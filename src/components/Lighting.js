@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/Standard.css";
 import LightingLoop from "./images/lightingloop.mp4";
 import "./styles/PastProjects.css";
 import { Link } from "react-router-dom";
 import Contact from "./Contact";
-import { Storage } from "aws-amplify";
+import { getUrl } from "@aws-amplify/storage"; // Import getUrl
 
 // Import images for each project
 import Image1 from "./images/popmstill3.jpg";
@@ -23,10 +23,8 @@ export default function Lighting() {
 	const [videoUrl, setVideoUrl] = useState(null);
 
 	useEffect(() => {
-		// Fetch the secure URL from S3
-		Storage.get("portfolio-videos-current/lightingloop.mp4", {
-			level: "protected",
-		}) // 'protected' if it's user-specific, or 'public' if accessible to all authenticated users
+		// Fetch the secure URL from S3 using getUrl
+		getUrl("portfolio-videos-current/lightingloop.mp4", { level: "protected" })
 			.then((url) => setVideoUrl(url))
 			.catch((err) => console.log("Error fetching video URL:", err));
 	}, []);
@@ -158,7 +156,7 @@ export default function Lighting() {
 			<div className="standard-container">
 				<div className="video-container">
 					<video
-						src={videoURL}
+						src={videoUrl}
 						autoPlay
 						loop
 						muted
