@@ -4,22 +4,28 @@
 	min-height: calc(100vh - 50px);
 	width: 100vw;
 	display: flex;
-	position: fixed;
+	position: relative;
 	flex-direction: column;
 	margin: 0;
 	padding: 0;
-	overflow: auto;
+	/* overflow-x: hidden; */
+	overflow-y: auto;
+
+	/* Hide scrollbar on Firefox */
+	/* Firefox */
 }
 
 /* Each section takes full viewport height and stacks vertically */
 .standard-container {
 	min-height: calc(100vh - 50px);
-	width: 100vw;
+	width: 100%;
+	padding: 0;
+	margin: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	overflow: auto;
+	/* overflow: auto; */
 }
 
 /* Fullscreen video background for each container */

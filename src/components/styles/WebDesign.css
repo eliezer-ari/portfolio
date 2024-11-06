@@ -21,7 +21,7 @@ iframe {
 }
 
 .site1 {
-	transform: scale(0.2) translateY(-80rem);
+	transform: scale(0.2) translateX(-140rem);
 	z-index: 10;
 }
 
@@ -31,7 +31,7 @@ iframe {
 }
 
 .site3 {
-	transform: scale(0.2) translateY(80rem);
+	transform: scale(0.2) translateX(140rem);
 	z-index: 10;
 }
 
@@ -49,9 +49,9 @@ iframe {
 	-moz-transform: translate(0, -50px);
 }
 
-@media (min-width: 1200px) {
+@media (max-width: 1300px) {
 	.site1 {
-		transform: scale(0.2) translateY(-80rem);
+		transform: scale(0.2) translateX(0) translateY(-80rem);
 	}
 
 	.site2 {
@@ -59,13 +59,13 @@ iframe {
 	}
 
 	.site3 {
-		transform: scale(0.2) translateY(80rem);
+		transform: scale(0.2) translateX(0) translateY(80rem);
 	}
 }
 
 @media (max-width: 900px) {
 	.site1 {
-		transform: scale(0.15) translateY(-100rem);
+		transform: scale(0.15) translateY(-80rem);
 	}
 
 	.site2 {
@@ -73,7 +73,7 @@ iframe {
 	}
 
 	.site3 {
-		transform: scale(0.15) translateY(100rem);
+		transform: scale(0.15) translateY(80rem);
 	}
 }
 

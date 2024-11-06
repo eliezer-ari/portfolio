@@ -17,7 +17,7 @@ import CarouselImage1 from "./images/popmstill1.jpg";
 import CarouselImage2 from "./images/popmstill2.jpg";
 import CarouselImage3 from "./images/popmstill3.jpg";
 
-export default function PastProjects() {
+export default function Lighting() {
 	const [modalContent, setModalContent] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -561,7 +561,9 @@ export default function PastProjects() {
 					)}
 				</div>
 			</div>
-			{/* <Contact /> */}
+			<div className="standard-container">
+				<h1>Contact Form Here</h1>
+			</div>
 		</>
 	);
 }

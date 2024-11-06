@@ -5,6 +5,8 @@
 	grid-template-rows: auto;
 	grid-gap: 1rem; /* Space between grid items */
 	padding: 1rem; /* Internal padding instead of margin */
+	padding-left: 0;
+	padding-right: 0;
 	height: calc(100vh - 50px); /* Adjust height based on viewport */
 	width: 100vw;
 	box-sizing: border-box; /* Ensure padding does not cause overflow */
