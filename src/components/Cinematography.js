@@ -3,6 +3,7 @@ import "./styles/Standard.css";
 import CinemaLoop from "./images/cinematographyloop.mp4";
 import "./styles/PastProjects.css";
 import { Link } from "react-router-dom";
+import { Storage } from "aws-amplify";
 
 // Import images for each project
 import Image1 from "./images/imagetemplate.jpg";
@@ -18,6 +19,17 @@ import CarouselImage2 from "./images/popmstill2.jpg";
 import CarouselImage3 from "./images/popmstill3.jpg";
 
 export default function Cinematography() {
+	const [videoUrl, setVideoUrl] = useState(null);
+
+	useEffect(() => {
+		// Fetch the secure URL from S3
+		Storage.get("portfolio-videos-current/cinematographyloop.mp4", {
+			level: "protected",
+		}) // 'protected' if it's user-specific, or 'public' if accessible to all authenticated users
+			.then((url) => setVideoUrl(url))
+			.catch((err) => console.log("Error fetching video URL:", err));
+	}, []);
+
 	const [modalContent, setModalContent] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -144,7 +156,7 @@ export default function Cinematography() {
 			<div className="standard-container">
 				<div className="video-container">
 					<video
-						src={CinemaLoop}
+						src={videoUrl}
 						autoPlay
 						loop
 						muted
