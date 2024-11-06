@@ -1,0 +1,28 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - yarn install
+        build:
+          commands:
+            - yarn build
+      artifacts:
+        baseDirectory: build
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - node_modules/**/*
+
+    backend:
+      phases:
+        build:
+          commands:
+            - amplifyPush --simple # Deploy the backend
+      artifacts:
+        baseDirectory: build
+      cache:
+        paths:
+          - "**/*"
