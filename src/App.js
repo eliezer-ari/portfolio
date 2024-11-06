@@ -7,6 +7,8 @@ import Amplify from "aws-amplify";
 import { Storage } from "@aws-amplify/storage";
 import awsconfig from "./aws-exports";
 
+Amplify.configure(awsconfig);
+
 function App() {
 	return (
 		<Router>

@@ -20,6 +20,17 @@ import CarouselImage2 from "./images/popmstill2.jpg";
 import CarouselImage3 from "./images/popmstill3.jpg";
 
 export default function Lighting() {
+	const [videoUrl, setVideoUrl] = useState(null);
+
+	useEffect(() => {
+		// Fetch the secure URL from S3
+		Storage.get("portfolio-videos-current/lightingloop.mp4", {
+			level: "protected",
+		}) // 'protected' if it's user-specific, or 'public' if accessible to all authenticated users
+			.then((url) => setVideoUrl(url))
+			.catch((err) => console.log("Error fetching video URL:", err));
+	}, []);
+
 	const [modalContent, setModalContent] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -147,7 +158,7 @@ export default function Lighting() {
 			<div className="standard-container">
 				<div className="video-container">
 					<video
-						src={LightingLoop}
+						src={videoURL}
 						autoPlay
 						loop
 						muted
