@@ -3,6 +3,8 @@ import "./styles/Standard.css";
 import LightingLoop from "./images/lightingloop.mp4";
 import "./styles/PastProjects.css";
 import { Link } from "react-router-dom";
+import Contact from "./Contact";
+import { Storage } from "aws-amplify";
 
 // Import images for each project
 import Image1 from "./images/popmstill3.jpg";
@@ -33,7 +35,7 @@ export default function Lighting() {
 			description:
 				"Created lighting setups for a noir film under tight deadlines.",
 			image: Image1,
-			modalDescription: "Detailed description for Project 1.",
+			modalDescription: "Detailed description for Project 1 ...",
 			videoUrl: "https://www.youtube.com/embed/example1",
 			hasModal: true,
 			isCarousel: true, // This project uses a carousel instead of a video
@@ -562,7 +564,7 @@ export default function Lighting() {
 				</div>
 			</div>
 			<div className="standard-container">
-				<h1>Contact Form Here</h1>
+				<Contact />
 			</div>
 		</>
 	);
