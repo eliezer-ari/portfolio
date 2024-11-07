@@ -12,6 +12,21 @@ import Cinematography from "./Cinematography.js";
 import Home from "./Home.js";
 
 export default function Hero() {
+	const videoRef = useRef(null);
+
+	useEffect(() => {
+		const playVideo = () => {
+			if (videoRef.current) {
+				videoRef.current.play().catch((error) => {
+					console.log("Autoplay failed:", error);
+				});
+			}
+		};
+
+		document.addEventListener("click", playVideo);
+		return () => document.removeEventListener("click", playVideo);
+	}, []);
+
 	const [activeSection, setActiveSection] = useState("Home");
 	const [nextSection, setNextSection] = useState(null);
 	const [showSection, setShowSection] = useState(true);
