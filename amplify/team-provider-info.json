@@ -1,0 +1,69 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-portfolio-dev-8f432-authRole",
+      "UnauthRoleArn": "arn:aws:iam::447500965687:role/amplify-portfolio-dev-8f432-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::447500965687:role/amplify-portfolio-dev-8f432-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-portfolio-dev-8f432-deployment",
+      "UnauthRoleName": "amplify-portfolio-dev-8f432-unauthRole",
+      "StackName": "amplify-portfolio-dev-8f432",
+      "StackId": "arn:aws:cloudformation:us-east-1:447500965687:stack/amplify-portfolio-dev-8f432/76d25060-9be7-11ef-b3e4-12865c33385f",
+      "AmplifyAppId": "d16m91z7ch493n",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-portfolio-dev-8f432-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "function": {
+        "portfolio15348fa3": {
+          "deploymentBucketName": "amplify-portfolio-dev-8f432-deployment",
+          "s3Key": "amplify-builds/portfolio15348fa3-76385651544a386a6a58-build.zip"
+        }
+      },
+      "auth": {
+        "portfolio": {}
+      },
+      "api": {
+        "api99903057": {}
+      }
+    }
+  },
+  "sandbox": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-portfolio-sandbox-fa805-authRole",
+      "UnauthRoleArn": "arn:aws:iam::447500965687:role/amplify-portfolio-sandbox-fa805-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::447500965687:role/amplify-portfolio-sandbox-fa805-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-portfolio-sandbox-fa805-deployment",
+      "UnauthRoleName": "amplify-portfolio-sandbox-fa805-unauthRole",
+      "StackName": "amplify-portfolio-sandbox-fa805",
+      "StackId": "arn:aws:cloudformation:us-east-1:447500965687:stack/amplify-portfolio-sandbox-fa805/f275d060-9be8-11ef-a4af-0afff406bf47",
+      "AmplifyAppId": "ddzga7kj58rga",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-portfolio-sandbox-fa805-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "auth": {
+        "portfolio": {}
+      },
+      "function": {
+        "portfolio15348fa3": {
+          "deploymentBucketName": "amplify-portfolio-sandbox-fa805-deployment",
+          "s3Key": "amplify-builds/portfolio15348fa3-76385651544a386a6a58-build.zip"
+        },
+        "portfolio68f30d7d": {
+          "deploymentBucketName": "amplify-portfolio-sandbox-fa805-deployment",
+          "s3Key": "amplify-builds/portfolio68f30d7d-30676d306e656b4b4664-build.zip"
+        }
+      },
+      "api": {
+        "api99903057": {},
+        "api948deac9": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "ddzga7kj58rga",
+          "type": "cicd"
+        }
+      }
+    }
+  }
+}
