@@ -13,8 +13,8 @@ iframe {
 	height: 1080px;
 	border: 0;
 	opacity: 0; /* Start with opacity 0 */
-
-	animation: fadeIn 500ms ease-out 500ms forwards; /* 2s delay before fading in */
+	z-index: 5000;
+	animation: fadeIn 2s ease-out 2s forwards; /* 2s delay before fading in */
 	box-shadow: 0 1px 1px rgb(0 0 0 / 8%), 0 2px 2px rgb(0 0 0 / 8%),
 		0 4px 4px rgb(0 0 0 / 8%), 0 8px 8px rgb(0 0 0 / 8%),
 		0 16px 16px rgb(0 0 0 / 8%);
@@ -49,6 +49,28 @@ iframe {
 	-moz-transform: translate(0, -50px);
 }
 
+.website-copy {
+	display: flex;
+	position: absolute;
+	justify-content: center;
+	align-items: center;
+	min-width: 100vw;
+	height: 100vh;
+	z-index: 100;
+	pointer-events: none;
+}
+
+.website-copy h1 {
+	transform: translateY(200px);
+	color: #fff;
+	max-width: 90vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
 @media (max-width: 1300px) {
 	.site1 {
 		transform: scale(0.2) translateX(0) translateY(-80rem);
@@ -61,32 +83,36 @@ iframe {
 	.site3 {
 		transform: scale(0.2) translateX(0) translateY(80rem);
 	}
+
+	.website-copy h1 {
+		display: none;
+	}
 }
 
 @media (max-width: 900px) {
 	.site1 {
-		transform: scale(0.15) translateY(-80rem);
+		transform: scale(0.18) translateY(-80rem);
 	}
 
 	.site2 {
-		transform: scale(0.15);
+		transform: scale(0.18);
 	}
 
 	.site3 {
-		transform: scale(0.15) translateY(80rem);
+		transform: scale(0.18) translateY(80rem);
 	}
 }
 
 @media (max-width: 650px) {
 	.site1 {
-		transform: scale(0.1) translateY(-100rem);
+		transform: scale(0.15) translateY(-100rem);
 	}
 
 	.site2 {
-		transform: scale(0.1);
+		transform: scale(0.15) translateY(0rem);
 	}
 
 	.site3 {
-		transform: scale(0.1) translateY(100rem);
+		transform: scale(0.15) translateY(100rem);
 	}
 }

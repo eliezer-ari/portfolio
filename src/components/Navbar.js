@@ -1,20 +1,67 @@
-import React, { useState } from "react";
-import { Link } from "react-scroll";
+import React, { useState, useEffect } from "react";
 import Logo from "./images/namelogo.png";
 import "./styles/Navbar.css";
 
-const Navbar = ({ setActiveSection }) => {
-	const [activeLink, setActiveLink] = useState(null); // No default active link
+const Navbar = ({ setActiveSection, triggerRef }) => {
+	const [activeLink, setActiveLink] = useState(null);
+	const [logoHidden, setLogoHidden] = useState(false); // Logo visible by default
+	let hideTimer = null;
 
 	const handleLinkClick = (section) => {
 		setActiveSection(section);
-		setActiveLink(section); // Set active link when clicked
+		setActiveLink(section);
 	};
+
+	useEffect(() => {
+		// Function to handle visibility change
+		const handleVisibilityChange = (entries) => {
+			const entry = entries[0];
+
+			if (!entry.isIntersecting) {
+				// Start a timer when `triggerRef` is out of view
+				hideTimer = setTimeout(() => {
+					setLogoHidden(true);
+					console.log("Logo hidden after 200ms out of view");
+				}, 200);
+			} else {
+				// Clear timer if `triggerRef` becomes visible again within 500ms
+				clearTimeout(hideTimer);
+				setLogoHidden(false);
+				console.log("Logo remains visible");
+			}
+		};
+
+		// Initial visibility check
+		if (triggerRef?.current) {
+			const rect = triggerRef.current.getBoundingClientRect();
+			const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+			setLogoHidden(!isVisible);
+			console.log("Initial visibility of triggerRef:", isVisible); // Debugging
+		}
+
+		// Set up Intersection Observer to monitor visibility changes
+		const observer = new IntersectionObserver(handleVisibilityChange, {
+			threshold: 0.1,
+		});
+
+		if (triggerRef?.current) {
+			observer.observe(triggerRef.current);
+			console.log("Observer set up on triggerRef"); // Debugging
+		}
+
+		// Cleanup observer and timer on component unmount or triggerRef change
+		return () => {
+			if (observer && triggerRef?.current) {
+				observer.unobserve(triggerRef.current);
+			}
+			clearTimeout(hideTimer);
+		};
+	}, [triggerRef]);
 
 	return (
 		<nav className="navbar">
 			<div className="logospacer">
-				<div className="logocontainer">
+				<div className={`logocontainer ${logoHidden ? "hide-logo" : ""}`}>
 					<button
 						className={`navlinkspecial ${
 							activeLink === "Home" ? "active" : ""
@@ -47,17 +94,6 @@ const Navbar = ({ setActiveSection }) => {
 							Cinematography
 						</button>
 					</li>
-					{/* <li className="navitem">
-						<button
-							className={`navlinks ${
-								activeLink === "Videography" ? "active" : ""
-							}`}
-							onClick={() => handleLinkClick("Videography")}
-						>
-							Videography
-						</button>
-					</li> */}
-
 					<li className="navitem">
 						<button
 							className={`navlinks ${activeLink === "VFX" ? "active" : ""}`}
@@ -73,7 +109,7 @@ const Navbar = ({ setActiveSection }) => {
 							}`}
 							onClick={() => handleLinkClick("Graphics")}
 						>
-							Motion Graphics
+							Graphics
 						</button>
 					</li>
 					<li className="navitem">

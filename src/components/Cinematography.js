@@ -1,32 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./styles/Standard.css";
 import CinemaLoop from "./images/cinematographyloop.mp4";
 import "./styles/PastProjects.css";
 import { Link } from "react-router-dom";
-import { getUrl } from "@aws-amplify/storage";
+import Contact from "./Contact";
 
 // Import images for each project
-import Image1 from "./images/imagetemplate.jpg";
-import Image2 from "./images/imagetemplate.jpg";
-import Image3 from "./images/imagetemplate.jpg";
+import Image1 from "./images/tiulstill2.png";
+import Image2 from "./images/cakepartystill.png";
+import Image3 from "./images/moodycenterstill.png";
 import Image4 from "./images/gentlemenstill.png";
-import Image5 from "./images/imagetemplate.jpg";
-import Image6 from "./images/imagetemplate.jpg";
+import Image5 from "./images/balletstill.png";
+import Image6 from "./images/chromastill.png";
 
 // Additional carousel images for a project
 import CarouselImage1 from "./images/popmstill1.jpg";
 import CarouselImage2 from "./images/popmstill2.jpg";
 import CarouselImage3 from "./images/popmstill3.jpg";
 
-export default function Cinematography() {
-	const [videoUrl, setVideoUrl] = useState(null);
+const Cinematography = ({ setNextSection, setTriggerRef }) => {
+	const triggerRef = useRef(null);
 
 	useEffect(() => {
-		// Fetch the secure URL from S3 using getUrl
-		getUrl("portfolio-videos-current/lightingloop.mp4", { level: "protected" })
-			.then((url) => setVideoUrl(url))
-			.catch((err) => console.log("Error fetching video URL:", err));
-	}, []);
+		// Set the trigger reference when the component mounts
+		if (setTriggerRef) {
+			setTriggerRef(triggerRef);
+			console.log("triggerRef set in Cinematography:", triggerRef); // Debugging log
+		}
+	}, [setTriggerRef]);
+
+	// Function to handle back to home navigation with animation
+	const handleBackToHome = () => {
+		setNextSection("Home"); // Set nextSection to "Home" to trigger the animation
+	};
+
+	const videoUrl =
+		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/cinematographyloop.mp4";
+
+	const mobileVideoUrl =
+		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/cinematographyreelmobile.mp4";
 
 	const [modalContent, setModalContent] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,51 +48,52 @@ export default function Cinematography() {
 		{
 			id: 1,
 			type: "large",
-			medium: "Short Film:",
+			medium: "[Test Shoot]",
+			title: "Cracked: The Nutcracker with a Twist",
+			status: "In Post Production",
+			role: "Camera Operator",
+			description: "",
+			image: Image5,
+			modalDescription: "Detailed description for Project 5.",
+			videoUrl: "https://www.youtube.com/embed/1-KjUlL71NQ?si=SrfXoLvctuvw2Flk",
+			hasModal: false,
+			isCarousel: false, // This project uses a video instead of a carousel
+		},
+		{
+			id: 2,
+			type: "small",
+			medium: "[Short Film]",
 			title: "Tiul",
 			status: "",
 			role: "Director & Camera Operator",
 			description: "...",
 			image: Image1,
 			modalDescription: "Detailed description for Project 1.",
-			videoUrl: "https://www.youtube.com/embed/example1",
+			videoUrl:
+				"https://player.vimeo.com/video/1007909906?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
 			hasModal: true,
-			isCarousel: true, // This project uses a carousel instead of a video
-			carouselImages: [CarouselImage1, CarouselImage2, CarouselImage3],
-		},
-		{
-			id: 2,
-			type: "small",
-			medium: "Live Event:",
-			title: "Hotplate x Butter and Crumble | Cake Party",
-			status: "",
-			role: "Camera Operator",
-			description: "",
-			image: Image2,
-			modalDescription: "Detailed description for Project 2.",
-			videoUrl: "https://www.youtube.com/embed/example1",
-			hasModal: false,
-			isCarousel: false, // This project uses a video instead of a carousel
+			isCarousel: false, // This project uses a carousel instead of a video
 		},
 		{
 			id: 3,
 			type: "small",
-			medium: "TV Spot:",
-			title: "...",
+			medium: "[Live Event]",
+			title: "McConaughey on the Moody Center",
 			status: "",
-			role: "Camera Operator",
+			role: "Camera Operator & Lighting Technician",
 			description: "",
 			image: Image3,
 			modalDescription: "Detailed description for Project 3.",
-			videoUrl: "https://www.youtube.com/embed/px-NdIt8QwM?si=EQa9OFY9egs2sAWJ",
+			videoUrl: "https://www.youtube.com/embed/2rADPqh3Mkg?si=kDQepyL6GUAHp8Uv",
 			hasModal: true,
 			isCarousel: false, // This project uses a video instead of a carousel
 		},
+
 		{
 			id: 4,
 			type: "small",
-			medium: "Promotional Short:",
-			title: "Professor McConaughey on THE GENTLEMEN",
+			medium: "[Live Event]",
+			title: "McConaughey on THE GENTLEMEN",
 			status: "",
 			role: "Camera Operator & Lighting Technician",
 			description: "",
@@ -90,20 +103,22 @@ export default function Cinematography() {
 			hasModal: true,
 			isCarousel: false, // This project uses a video instead of a carousel
 		},
+
 		{
 			id: 5,
 			type: "large",
-			medium: "TV Spot:",
-			title: "...",
-			status: "",
+			medium: "[Live Event]",
+			title: "Hotplate x Butter & Crumble Cake Picnic",
+			status: "In Post Production",
 			role: "Camera Operator",
 			description: "",
-			image: Image5,
-			modalDescription: "Detailed description for Project 5.",
-			videoUrl: "https://www.youtube.com/embed/1-KjUlL71NQ?si=SrfXoLvctuvw2Flk",
-			hasModal: true,
+			image: Image2,
+			modalDescription: "Detailed description for Project 2.",
+			videoUrl: "https://www.youtube.com/embed/example1",
+			hasModal: false,
 			isCarousel: false, // This project uses a video instead of a carousel
 		},
+
 		{
 			id: 6,
 			type: "small",
@@ -152,6 +167,19 @@ export default function Cinematography() {
 	return (
 		<>
 			<div className="standard-container">
+				<div className="back-arrow-container">
+					<button
+						style={{ transform: "rotate(270deg) translateX(-8px)" }}
+						className="arrow-button"
+						onClick={handleBackToHome}
+					>
+						&#x2303;
+					</button>
+				</div>
+
+				<div className="trigger-container">
+					<div ref={triggerRef} className="trigger"></div>{" "}
+				</div>
 				<div className="video-container">
 					<video
 						src={videoUrl}
@@ -161,6 +189,24 @@ export default function Cinematography() {
 						playsInline
 						className="video-background"
 					/>
+					<video
+						src={mobileVideoUrl}
+						autoPlay
+						loop
+						muted
+						playsInline
+						className="video-background-mobile"
+					/>
+				</div>
+				<div className="arrow-container">
+					<div
+						style={{
+							transform: "rotate(180deg) translateY(-3px)",
+						}}
+						className="down-arrow"
+					>
+						&#x2303;
+					</div>
 				</div>
 			</div>
 			<div className="standard-container">
@@ -176,8 +222,8 @@ export default function Cinematography() {
 							<img src={project.image} alt={project.title} />
 							<div className="project-content">
 								<div className="project-header">
-									<h4>{project.medium}</h4>
 									<h1>{project.title}</h1>
+									<h4>{project.medium}</h4>
 									{project.status && <h2>{project.status}</h2>}
 								</div>
 								<h3>{project.role}</h3>
@@ -198,70 +244,24 @@ export default function Cinematography() {
 												{/* <div className="thumbnail-container"></div> */}
 												<div className="content">
 													<div className="project-header">
-														<h1>Event Space: Support Women DJs Studio</h1>
-														<h2>In Progress</h2>
-													</div>
-													<h3>Chief Lighting Technician</h3>
-													<p>
-														Designed a permanent lighting setup for boiler room
-														sets.
-													</p>
-													<span>Installation pending.</span>
-												</div>
-											</li>
-											<li>
-												{/* <div className="thumbnail-container"></div> */}
-												<div className="content">
-													<div className="project-header">
 														<h1>
-															Feature Film: Lloyd Kaufman’s The Power of
-															Positive Murder
+															Live Event: "Hotplate x Butter & Crumble Cake
+															Picnic"
 														</h1>
 														<h2></h2>
 													</div>
-													<h3>Lighting Technician (Grip & Electric)</h3>
-													<p>
-														Created precise lighting setups for a noir camp
-														horror film.
-													</p>
-													<span>Currently in post-production.</span>
-												</div>
-											</li>
-											<li>
-												{/* <div className="thumbnail-container"></div> */}
-												<div className="content">
-													<div className="project-header">
-														<h1>Live Event: 626 Night Market Music Festival</h1>
-														<h2></h2>
-													</div>
-													<h3>Lighting Technician (Rigger & Stagehand)</h3>
-													<p>
-														Rigged lights and constructed a stage platform using
-														steel decks.
-													</p>
-												</div>
-											</li>
-											<li>
-												{/* <div className="thumbnail-container"></div> */}
-												<div className="content">
-													<div className="project-header">
-														<h1>
-															TV Spot: "Laufey - From The Start (Live) |
-															Microsoft"
-														</h1>
-														<h2></h2>
-													</div>
+													<h3>Camera Operator</h3>
+													<p>Operated camera in a run & gun style.</p>
+													<span>In Post Production.</span>
 
-													<h3>Lighting Technician (Grip)</h3>
-													<p>Rigged lights for a live performance.</p>
-													<span>
+													{/* <span>
 														<Link
 															className="list-link"
-															to="https://www.youtube.com/watch?v=px-NdIt8QwM"
+															to="https://www.youtube.com/watch?v=rIlBoJhQvuY"
 														>
 															Link here
 														</Link>
-													</span>
+													</span> */}
 												</div>
 											</li>
 											<li>
@@ -269,195 +269,22 @@ export default function Cinematography() {
 												<div className="content">
 													<div className="project-header">
 														<h1>
-															TV Spot: "Ranger Design: Leading the Charge in
-															EV-Ready Upfit Solutions"
+															Test Shoot: "Cracked, The Nutcracker with a Twist"
 														</h1>
 														<h2></h2>
 													</div>
-													<h3>Lighting Technician (Grip)</h3>
-													<p>
-														Rigged high-key lighting setups in a cinematic
-														style.
-													</p>
-													<span>
+													<h3>Camera Operator</h3>
+													<p>Operated camera in a run & gun style.</p>
+													<span>In Post Production.</span>
+
+													{/* <span>
 														<Link
 															className="list-link"
-															to="https://www.youtube.com/watch?v=1uIU0kaHvN8"
+															to="https://www.youtube.com/watch?v=rIlBoJhQvuY"
 														>
 															Link here
 														</Link>
-													</span>
-												</div>
-											</li>
-											<li>
-												{/* <div className="thumbnail-container"></div> */}
-												<div className="content">
-													<div className="project-header">
-														<h1>
-															TV Spot: "Introducing Future: Unlimited Personal
-															Training"
-														</h1>
-														<h2></h2>
-													</div>
-													<h3>Lighting Technician (Grip)</h3>
-													<p>
-														Rigged high-key lighting setups in a cinematic
-														style.
-													</p>
-													<span>
-														<Link
-															className="list-link"
-															to="https://www.youtube.com/watch?v=1-KjUlL71NQ&authuser=2"
-														>
-															Link here
-														</Link>
-													</span>
-												</div>
-											</li>
-											<li>
-												{/* <div className="thumbnail-container"></div> */}
-												<div className="content">
-													<div className="project-header">
-														<h1>
-															TV Spot: "Reverse Zoom: Work From Home | Perfect
-															Bar"
-														</h1>
-														<h2></h2>
-													</div>
-													<h3>Lighting Technician (Grip)</h3>
-													<p>
-														Rigged high-key lighting setups in a cinematic
-														style.
-													</p>
-													<span>
-														<Link
-															className="list-link"
-															to="https://www.youtube.com/watch?v=EdyD4kYcwOw"
-														>
-															Link here
-														</Link>
-													</span>
-												</div>
-											</li>
-											<li>
-												{/* <div className="thumbnail-container"></div> */}
-												<div className="content">
-													<div className="project-header">
-														<h1>
-															TV Spot: "Perfectly Censored: Snacksplosion |
-															Perfect Bar"
-														</h1>
-														<h2></h2>
-													</div>
-													<h3>Lighting Technician (Grip)</h3>
-													<p>
-														Rigged high-key lighting setups in a cinematic
-														style.
-													</p>
-													<span>
-														<Link
-															className="list-link"
-															to="https://www.youtube.com/watch?v=ei2_wkY1lYY"
-														>
-															Link here
-														</Link>
-													</span>
-												</div>
-											</li>
-											<li>
-												{/* <div className="thumbnail-container"></div> */}
-												<div className="content">
-													<div className="project-header">
-														<h1>TV Spot: "Reverse Zoom: Zen | Perfect Bar"</h1>
-														<h2></h2>
-													</div>
-													<h3>Lighting Technician (Grip)</h3>
-													<p>
-														Rigged high-key lighting setups in a cinematic
-														style.
-													</p>
-													<span>
-														<Link
-															className="list-link"
-															to="https://www.youtube.com/watch?v=LN00uVGhgqw"
-														>
-															Link here
-														</Link>
-													</span>
-												</div>
-											</li>
-											<li>
-												{/* <div className="thumbnail-container"></div> */}
-												<div className="content">
-													<div className="project-header">
-														<h1>
-															TV Spot: "Reverse Zoom: On-The-Go | Perfect Bar"
-														</h1>
-														<h2></h2>
-													</div>
-													<h3>Lighting Technician (Grip)</h3>
-													<p>
-														Rigged high-key lighting setups in a cinematic
-														style.
-													</p>
-													<span>
-														<Link
-															className="list-link"
-															to="https://www.youtube.com/watch?v=KoZ1jwBooug"
-														>
-															Link here
-														</Link>
-													</span>
-												</div>
-											</li>
-											<li>
-												{/* <div className="thumbnail-container"></div> */}
-												<div className="content">
-													<div className="project-header">
-														<h1>
-															TV Spot: "Perfectly Censored: Magic Eraser |
-															Perfect Bar"
-														</h1>
-														<h2></h2>
-													</div>
-													<h3>Lighting Technician (Grip)</h3>
-													<p>
-														Rigged high-key lighting setups in a cinematic
-														style.
-													</p>
-													<span>
-														<Link
-															className="list-link"
-															to="https://www.youtube.com/watch?v=WnXbg9vHsNo"
-														>
-															Link here
-														</Link>
-													</span>
-												</div>
-											</li>
-											<li>
-												{/* <div className="thumbnail-container"></div> */}
-												<div className="content">
-													<div className="project-header">
-														<h1>
-															TV Spot: "Perfectly Censored: Fridge Hack |
-															Perfect Bar"
-														</h1>
-														<h2></h2>
-													</div>
-													<h3>Lighting Technician (Grip)</h3>
-													<p>
-														Rigged high-key lighting setups in a cinematic
-														style.
-													</p>
-													<span>
-														<Link
-															className="list-link"
-															to="https://www.youtube.com/watch?v=Fryv4XYr_dE"
-														>
-															Link here
-														</Link>
-													</span>
+													</span> */}
 												</div>
 											</li>
 											<li>
@@ -470,10 +297,10 @@ export default function Cinematography() {
 														</h1>
 														<h2></h2>
 													</div>
-													<h3>Lighting Technician & Camera Operator</h3>
+													<h3>Camera Operator & Lighting Technician</h3>
 													<p>
-														Rigged high-key lighting setups in a documentary
-														style.
+														Operated camera and rigged high-key lighting setups
+														in a documentary style.
 													</p>
 													<span>
 														<Link
@@ -495,10 +322,10 @@ export default function Cinematography() {
 														</h1>
 														<h2></h2>
 													</div>
-													<h3>Lighting Technician & Camera Operator</h3>
+													<h3>Camera Operator & Lighting Technician</h3>
 													<p>
-														Rigged high-key lighting setups in a documentary
-														style.
+														Operated camera and rigged high-key lighting setups
+														in a documentary style.
 													</p>
 													<span>
 														<Link
@@ -533,6 +360,76 @@ export default function Cinematography() {
 															Link here
 														</Link>
 													</span>
+												</div>
+											</li>
+											<li>
+												{/* <div className="thumbnail-container"></div> */}
+												<div className="content">
+													<div className="project-header">
+														<h1>Short Film "What's Better than Matzah"</h1>
+														<h2></h2>
+													</div>
+													<h3>Director and Camera Operator</h3>
+													<p>Operated a Bolex 16mm Film Camera.</p>
+													<span>Link pending.</span>
+
+													{/* <span>
+														<Link
+															className="list-link"
+															to="https://www.youtube.com/watch?v=rIlBoJhQvuY"
+														>
+															Link here
+														</Link>
+													</span> */}
+												</div>
+											</li>
+											<li>
+												{/* <div className="thumbnail-container"></div> */}
+												<div className="content">
+													<div className="project-header">
+														<h1>Short Film: "Chroma"</h1>
+														<h2></h2>
+													</div>
+													<h3>Director & Camera Operator</h3>
+													<p>
+														Operated camera in a run & gun style. Awarded
+														Honorable Mention in the Scholastic Art and Writing
+														Competitio.
+													</p>
+													<span>Link pending.</span>
+
+													{/* <span>
+														<Link
+															className="list-link"
+															to="https://www.youtube.com/watch?v=rIlBoJhQvuY"
+														>
+															Link here
+														</Link>
+													</span> */}
+												</div>
+											</li>
+											<li>
+												{/* <div className="thumbnail-container"></div> */}
+												<div className="content">
+													<div className="project-header">
+														<h1>Short Film: "For the Record"</h1>
+														<h2></h2>
+													</div>
+													<h3>Director & Writer</h3>
+													<p>
+														Awarded First Place in the ATPI Big 72 Film
+														Festival.
+													</p>
+													<span>Link pending.</span>
+
+													{/* <span>
+														<Link
+															className="list-link"
+															to="https://www.youtube.com/watch?v=rIlBoJhQvuY"
+														>
+															Link here
+														</Link>
+													</span> */}
 												</div>
 											</li>
 										</ul>
@@ -571,15 +468,10 @@ export default function Cinematography() {
 				</div>
 			</div>
 			<div className="standard-container">
-				<h1>Contact Form Here</h1>
+				<Contact />
 			</div>
 		</>
 	);
-}
+};
 
-// tiul
-// hotplate video shoot
-// ballet shoot
-// the claw
-// mcconaughey 1
-// mcconaughey 2
+export default Cinematography;

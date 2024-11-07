@@ -7,12 +7,41 @@
 	position: relative;
 	flex-direction: column;
 	margin: 0;
-	padding: 0;
+	padding: 0 !important;
 	/* overflow-x: hidden; */
 	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: transparent transparent;
+}
 
-	/* Hide scrollbar on Firefox */
-	/* Firefox */
+.player {
+	display: flex;
+	position: absolute;
+	width: 90vw;
+	height: 80vh;
+}
+
+.back-arrow-container {
+	display: none;
+}
+/* Hide scrollbar on WebKit browsers */
+.page-container::-webkit-scrollbar {
+	width: 0; /* Removes scrollbar width, effectively hiding it */
+}
+
+/* For Firefox */
+.page-container {
+	scrollbar-width: none; /* Hides scrollbar */
+}
+
+.page-container::-webkit-scrollbar-thumb {
+	background-color: transparent; /* Ensures scrollbar thumb is transparent */
+}
+
+/* Hide scrollbar on Firefox */
+.page-container {
+	scrollbar-width: thin; /* Minimal width */
+	scrollbar-color: transparent transparent; /* Thumb and track transparent */
 }
 
 /* Each section takes full viewport height and stacks vertically */
@@ -27,6 +56,22 @@
 	position: relative;
 	/* overflow: auto; */
 }
+.trigger-container {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.trigger {
+	display: flex;
+	position: relative;
+	width: 100%;
+	height: 10%;
+	top: 0;
+}
 
 /* Fullscreen video background for each container */
 .video-container {
@@ -38,7 +83,12 @@
 	z-index: -1;
 }
 
+.video-background-mobile {
+	display: none;
+}
+
 .video-background {
+	display: flex;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -87,4 +137,98 @@
 	/* background-color: yellow; */
 	width: 100%;
 	height: 50%;
+}
+
+.arrow-container {
+	display: none;
+}
+
+@media (max-width: 1500px) {
+	.page-container {
+		min-height: 100vh;
+		width: 100vw;
+		display: flex;
+		position: relative;
+		flex-direction: column;
+		margin: 0;
+		padding: 0 !important;
+		/* overflow-x: hidden; */
+		overflow-y: auto;
+		scrollbar-width: thin;
+		scrollbar-color: transparent transparent;
+	}
+
+	.standard-container {
+		min-height: 100vh;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		/* overflow: auto; */
+	}
+}
+
+@media (max-width: 960px) {
+	.back-arrow-container {
+		display: flex;
+		position: relative;
+		flex-direction: column;
+		height: 100vh;
+		width: 100vw;
+		justify-content: flex-end;
+		align-items: flex-start;
+		z-index: 4000;
+	}
+
+	.arrow-button {
+		all: unset; /* Removes default button styling */
+		font-size: 1.5rem;
+		color: #ffffff;
+		cursor: pointer;
+		opacity: 0.7;
+		transition: opacity 0.3s;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 2rem;
+	}
+
+	.arrow-container {
+		display: none;
+		position: relative;
+		flex-direction: column;
+		height: 100vh;
+		width: 100vw;
+		justify-content: flex-end;
+		align-items: flex-end;
+	}
+
+	.down-arrow,
+	.back-arrow {
+		font-size: 1.5rem;
+		color: #ffffff;
+		opacity: 0.7;
+		/* transition: opacity 0.3s; */
+		padding: 2rem;
+		margin-bottom: 0.1rem;
+		position: relative;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.video-background-mobile {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.video-background {
+		display: none;
+	}
 }

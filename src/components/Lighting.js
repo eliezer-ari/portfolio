@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./styles/Standard.css";
 import LightingLoop from "./images/lightingloop.mp4";
 import "./styles/PastProjects.css";
 import { Link } from "react-router-dom";
+
 import Contact from "./Contact";
 import { getUrl } from "@aws-amplify/storage"; // Import getUrl
 
@@ -15,29 +16,53 @@ import Image5 from "./images/futurestill.png";
 import Image6 from "./images/tiulstill.png";
 
 // Additional carousel images for a project
-import CarouselImage1 from "./images/popmstill1.jpg";
-import CarouselImage2 from "./images/popmstill2.jpg";
+import CarouselImage1 from "./images/popmstill2.jpg";
+import CarouselImage2 from "./images/popmstill1.jpg";
 import CarouselImage3 from "./images/popmstill3.jpg";
 
-export default function Lighting() {
-	const [videoUrl, setVideoUrl] = useState(null);
+export default function Lighting({ setNextSection, setTriggerRef }) {
+	const triggerRef = useRef(null);
 
 	useEffect(() => {
-		// Fetch the secure URL from S3 using getUrl
-		getUrl("portfolio-videos-current/lightingloop.mp4", { level: "protected" })
-			.then((url) => setVideoUrl(url))
-			.catch((err) => console.log("Error fetching video URL:", err));
-	}, []);
+		// Set the trigger reference when the component mounts
+		if (setTriggerRef) {
+			setTriggerRef(triggerRef);
+			console.log("triggerRef set in Lighting:", triggerRef); // Debugging log
+		}
+	}, [setTriggerRef]);
 
+	const videoUrl =
+		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/lightingloop.mp4";
+
+	const mobileVideoUrl =
+		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/lightingreelmobile.mp4";
+
+	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 	const [modalContent, setModalContent] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+	// Function to handle back to home navigation with animation
+	const handleBackToHome = () => {
+		setNextSection("Home"); // Set nextSection to "Home" to trigger the animation
+	};
+
+	const openModal = (project) => {
+		if (project.hasModal) {
+			setModalContent(project);
+			setIsModalOpen(true);
+		}
+	};
+
+	const closeModal = () => {
+		setModalContent(null);
+		setIsModalOpen(false);
+	};
 
 	const projects = [
 		{
 			id: 1,
 			type: "large",
-			medium: "Feature Film:",
+			medium: "[Feature Film]",
 			title: "Lloyd Kaufman’s The Power of Positive Murder",
 			status: "",
 			role: "Lighting Technician (Grip & Electric)",
@@ -53,7 +78,7 @@ export default function Lighting() {
 		{
 			id: 2,
 			type: "small",
-			medium: "Event Space:",
+			medium: "[Event Space]",
 			title: "Support Women DJs Studio",
 			status: "In Progress",
 			role: "Chief Lighting Technician",
@@ -67,7 +92,7 @@ export default function Lighting() {
 		{
 			id: 3,
 			type: "small",
-			medium: "TV Spot:",
+			medium: "[TV Spot]",
 			title: "Laufey - From The Start (Live) | Microsoft",
 			status: "",
 			role: "Lighting Technician (Grip)",
@@ -81,7 +106,7 @@ export default function Lighting() {
 		{
 			id: 4,
 			type: "small",
-			medium: "Promotional Short:",
+			medium: "[Live Event]",
 			title: "Professor McConaughey on THE GENTLEMEN",
 			status: "",
 			role: "Lighting Technician & Camera Operator",
@@ -95,7 +120,7 @@ export default function Lighting() {
 		{
 			id: 5,
 			type: "large",
-			medium: "TV Spot:",
+			medium: "[TV Spot]",
 			title: "Introducing Future: Unlimited Personal Training",
 			status: "",
 			role: "Lighting Technician (Grip)",
@@ -123,19 +148,6 @@ export default function Lighting() {
 		},
 	];
 
-	const openModal = (project) => {
-		if (project.hasModal) {
-			setModalContent(project);
-			setCurrentImageIndex(0); // Reset to first image if it's a carousel
-			setIsModalOpen(true);
-		}
-	};
-
-	const closeModal = () => {
-		setModalContent(null);
-		setIsModalOpen(false);
-	};
-
 	// Carousel navigation functions
 	const nextImage = () => {
 		setCurrentImageIndex(
@@ -154,6 +166,20 @@ export default function Lighting() {
 	return (
 		<>
 			<div className="standard-container">
+				<div className="back-arrow-container">
+					<button
+						style={{ transform: "rotate(270deg) translateX(-8px)" }}
+						className="arrow-button"
+						onClick={handleBackToHome}
+					>
+						&#x2303;
+					</button>
+				</div>
+
+				<div className="trigger-container">
+					<div ref={triggerRef} className="trigger"></div>{" "}
+					{/* Trigger element */}
+				</div>
 				<div className="video-container">
 					<video
 						src={videoUrl}
@@ -163,9 +189,28 @@ export default function Lighting() {
 						playsInline
 						className="video-background"
 					/>
+					<video
+						src={mobileVideoUrl}
+						autoPlay
+						loop
+						muted
+						playsInline
+						className="video-background-mobile"
+					/>
+				</div>
+				<div className="arrow-container">
+					<div
+						style={{
+							transform: "rotate(180deg) translateY(-3px)",
+						}}
+						className="down-arrow"
+					>
+						&#x2303;
+					</div>
 				</div>
 			</div>
-			<div className="standard-container">
+
+			<div className="pastprojects-container">
 				<div className="past-projects-grid">
 					{projects.map((project) => (
 						<div
@@ -178,15 +223,14 @@ export default function Lighting() {
 							<img src={project.image} alt={project.title} />
 							<div className="project-content">
 								<div className="project-header">
-									<h4>{project.medium}</h4>
 									<h1>{project.title}</h1>
+									<h4>{project.medium}</h4>
 									{project.status && <h2>{project.status}</h2>}
 								</div>
 								<h3>{project.role}</h3>
 							</div>
 						</div>
 					))}
-
 					{isModalOpen && modalContent && (
 						<div className="modal-overlay" onClick={closeModal}>
 							<div
@@ -572,6 +616,7 @@ export default function Lighting() {
 					)}
 				</div>
 			</div>
+
 			<div className="standard-container">
 				<Contact />
 			</div>

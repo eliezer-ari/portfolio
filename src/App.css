@@ -5,6 +5,7 @@
 *::before,
 *::after {
 	box-sizing: border-box;
+	scroll-behavior: smooth;
 }
 
 .App {
@@ -59,4 +60,12 @@ li {
 
 body {
 	background-color: #000;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden; /* Prevents scrollbars from appearing on the root */
+	height: 100%;
 }

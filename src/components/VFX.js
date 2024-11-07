@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./styles/Standard.css";
 import CinemaLoop from "./images/cinematographyloop.mp4";
 import "./styles/PastProjects.css";
 import { Link } from "react-router-dom";
+import Contact from "./Contact";
 
 // Import images for each project
-import Image1 from "./images/imagetemplate.jpg";
-import Image2 from "./images/imagetemplate.jpg";
+import Image1 from "./images/screenrepstill.png";
+import Image2 from "./images/finishedvfxstill.png";
 import Image3 from "./images/imagetemplate.jpg";
 import Image4 from "./images/imagetemplate.jpg";
 import Image5 from "./images/imagetemplate.jpg";
@@ -17,7 +18,28 @@ import CarouselImage1 from "./images/popmstill1.jpg";
 import CarouselImage2 from "./images/popmstill2.jpg";
 import CarouselImage3 from "./images/popmstill3.jpg";
 
-export default function VFX() {
+const VFX = ({ setNextSection, setTriggerRef }) => {
+	const videoUrl =
+		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/vfxreeldesktop.mp4";
+
+	const mobileVideoUrl =
+		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/vfxreelmobile.mp4";
+
+	const triggerRef = useRef(null);
+
+	// Function to handle back to home navigation with animation
+	const handleBackToHome = () => {
+		setNextSection("Home"); // Set nextSection to "Home" to trigger the animation
+	};
+
+	useEffect(() => {
+		// Set the trigger reference when the component mounts
+		if (setTriggerRef) {
+			setTriggerRef(triggerRef);
+			console.log("triggerRef set in Home:", triggerRef); // Debugging log
+		}
+	}, [setTriggerRef]);
+
 	const [modalContent, setModalContent] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -25,90 +47,18 @@ export default function VFX() {
 	const projects = [
 		{
 			id: 1,
-			type: "large",
-			medium: "Feature Film:",
-			title: "...",
+			type: "small",
+			medium: "",
+			title: "Seamless Visual Effects in Adobe After Effects",
 			status: "",
-			role: "...",
-			description:
-				"Created lighting setups for a noir film under tight deadlines.",
+			role: "Motion tracking, text replacement, object removals, and everything else.",
+			description: "",
 			image: Image1,
 			modalDescription: "Detailed description for Project 1.",
 			videoUrl: "https://www.youtube.com/embed/example1",
-			hasModal: true,
-			isCarousel: true, // This project uses a carousel instead of a video
-			carouselImages: [CarouselImage1, CarouselImage2, CarouselImage3],
-		},
-		{
-			id: 2,
-			type: "small",
-			medium: "Event Space:",
-			title: "...",
-			status: "In Progress",
-			role: "Camera Operator",
-			description: "",
-			image: Image2,
-			modalDescription: "Detailed description for Project 2.",
-			videoUrl: "https://www.youtube.com/embed/example1",
 			hasModal: false,
-			isCarousel: false, // This project uses a video instead of a carousel
-		},
-		{
-			id: 3,
-			type: "small",
-			medium: "TV Spot:",
-			title: "...",
-			status: "",
-			role: "Camera Operator",
-			description: "",
-			image: Image3,
-			modalDescription: "Detailed description for Project 3.",
-			videoUrl: "https://www.youtube.com/embed/px-NdIt8QwM?si=EQa9OFY9egs2sAWJ",
-			hasModal: true,
-			isCarousel: false, // This project uses a video instead of a carousel
-		},
-		{
-			id: 4,
-			type: "small",
-			medium: "Promotional Short:",
-			title: "Professor McConaughey on THE GENTLEMEN",
-			status: "",
-			role: "Camera Operator & Lighting Technician",
-			description: "",
-			image: Image4,
-			modalDescription: "Detailed description for Project 4.",
-			videoUrl: "https://www.youtube.com/embed/rIlBoJhQvuY?si=KmEBDbDG9dNrpcJ5",
-			hasModal: true,
-			isCarousel: false, // This project uses a video instead of a carousel
-		},
-		{
-			id: 5,
-			type: "large",
-			medium: "TV Spot:",
-			title: "...",
-			status: "",
-			role: "Camera Operator",
-			description: "",
-			image: Image5,
-			modalDescription: "Detailed description for Project 5.",
-			videoUrl: "https://www.youtube.com/embed/1-KjUlL71NQ?si=SrfXoLvctuvw2Flk",
-			hasModal: true,
-			isCarousel: false, // This project uses a video instead of a carousel
-		},
-		{
-			id: 6,
-			type: "small",
-			medium: "",
-			title: "Other Projects",
-			status: "",
-			role: "",
-			description: "",
-			image: Image6,
-			modalDescription: "Detailed description for Project 6.",
-			videoUrl: "",
-			hasModal: true, // Modal disabled for this project
-			isCarousel: false, // This project uses a video instead of a carousel
-			isList: true,
+			isCarousel: false, // This project uses a carousel instead of a video
+			carouselImages: [CarouselImage1, CarouselImage2, CarouselImage3],
 		},
 	];
 
@@ -143,19 +93,50 @@ export default function VFX() {
 	return (
 		<>
 			<div className="standard-container">
+				<div className="back-arrow-container">
+					<button
+						style={{ transform: "rotate(270deg) translateX(-8px)" }}
+						className="arrow-button"
+						onClick={handleBackToHome}
+					>
+						&#x2303;
+					</button>
+				</div>
+
+				<div className="trigger-container">
+					<div ref={triggerRef} className="trigger"></div>{" "}
+				</div>
 				<div className="video-container">
 					<video
-						src={CinemaLoop}
+						src={videoUrl}
 						autoPlay
 						loop
 						muted
 						playsInline
 						className="video-background"
 					/>
+					<video
+						src={mobileVideoUrl}
+						autoPlay
+						loop
+						muted
+						playsInline
+						className="video-background-mobile"
+					/>
+				</div>
+				<div className="arrow-container">
+					<div
+						style={{
+							transform: "rotate(180deg) translateY(-3px)",
+						}}
+						className="down-arrow"
+					>
+						&#x2303;
+					</div>
 				</div>
 			</div>
 			<div className="standard-container">
-				<div className="past-projects-grid">
+				<div className="past-projects-grid-single">
 					{projects.map((project) => (
 						<div
 							key={project.id}
@@ -167,8 +148,8 @@ export default function VFX() {
 							<img src={project.image} alt={project.title} />
 							<div className="project-content">
 								<div className="project-header">
-									<h4>{project.medium}</h4>
 									<h1>{project.title}</h1>
+									<h4>{project.medium}</h4>
 									{project.status && <h2>{project.status}</h2>}
 								</div>
 								<h3>{project.role}</h3>
@@ -562,8 +543,10 @@ export default function VFX() {
 				</div>
 			</div>
 			<div className="standard-container">
-				<h1>Contact Form Here</h1>
+				<Contact />
 			</div>
 		</>
 	);
-}
+};
+
+export default VFX;

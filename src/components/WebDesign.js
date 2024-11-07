@@ -1,11 +1,42 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./styles/Standard.css";
 import "./styles/WebDesign.css";
+import Contact from "./Contact.js";
 
-export default function WebDesign() {
+const WebDesign = ({ setNextSection, setTriggerRef }) => {
+	const triggerRef = useRef(null);
+
+	// Function to handle back to home navigation with animation
+	const handleBackToHome = () => {
+		setNextSection("Home"); // Set nextSection to "Home" to trigger the animation
+	};
+
+	useEffect(() => {
+		// Set the trigger reference when the component mounts
+		if (setTriggerRef) {
+			setTriggerRef(triggerRef);
+			console.log("triggerRef set in Home:", triggerRef); // Debugging log
+		}
+	}, [setTriggerRef]);
+
 	return (
 		<>
 			<div className="standard-container">
+				<div className="back-arrow-container">
+					<button
+						style={{ transform: "rotate(270deg) translateX(-8px)" }}
+						className="arrow-button"
+						onClick={handleBackToHome}
+					>
+						&#x2303;
+					</button>
+				</div>
+				<div className="website-copy">
+					<h1>Responsive websites coded in React JS.</h1>
+				</div>
+				<div className="trigger-container">
+					<div ref={triggerRef} className="trigger"></div>{" "}
+				</div>
 				<iframe
 					id="site1"
 					title="frame"
@@ -22,13 +53,26 @@ export default function WebDesign() {
 					id="site3"
 					title="thiswebsite"
 					className="site3"
-					src="http://localhost:3000/"
+					src="http://localhost:3000/#Lighting"
 				></iframe>
+
+				<div className="arrow-container">
+					<div
+						style={{
+							transform: "rotate(180deg) translateY(-3px)",
+						}}
+						className="down-arrow"
+					>
+						&#x2303;
+					</div>
+				</div>
 			</div>
 
 			<div className="standard-container">
-				<h1>Contact Form Here</h1>
+				<Contact />
 			</div>
 		</>
 	);
-}
+};
+
+export default WebDesign;
