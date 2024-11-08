@@ -14,6 +14,10 @@
 	scrollbar-color: transparent transparent;
 }
 
+.view-reel-button {
+	display: none;
+}
+
 .player {
 	display: flex;
 	position: absolute;

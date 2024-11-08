@@ -105,6 +105,11 @@ const Lighting = ({ setNextSection }) => {
 		);
 	};
 
+	// Handle "View Reel" button click to open the desktop video in a new tab
+	const handleViewReelClick = () => {
+		window.open(videoUrl, "_blank", "noopener,noreferrer");
+	};
+
 	const projects = [
 		{
 			id: 1,
@@ -221,6 +226,9 @@ const Lighting = ({ setNextSection }) => {
 					onPlay={() => console.log("Video is playing")}
 					onError={(e) => console.error("Video error:", e)}
 				/>
+				<button className="view-reel-button" onClick={handleViewReelClick}>
+					View Reel
+				</button>
 				{/* <div className="video-container-mobile">
 					<video
 						ref={mobileVideoRef}

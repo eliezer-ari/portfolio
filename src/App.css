@@ -68,3 +68,10 @@ body {
 	padding: 0;
 	height: 100%;
 }
+
+/* Prevent layout shifting on Safari by setting fixed viewport heights */
+@supports (-webkit-touch-callout: none) {
+	.standard-container {
+		min-height: -webkit-fill-available; /* Helps with height issues on iOS */
+	}
+}
