@@ -8,70 +8,61 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 	};
 
 	return (
-		<nav
-			className={`navbar-lower ${
-				activeSection === "Home" ? "slide-in" : "slide-out"
-			}`}
-		>
-			{activeSection === "Home" && (
-				<div className="navbarmobilecontainer">
-					<div className="logospacer">
-						<div className="logocontainer">
-							<img src={Logo} alt="RDS Logo" className="navbarlogo" />
-						</div>
+		<nav className="navbar-lower">
+			<div className="navbarmobilecontainer">
+				<div className="logospacer">
+					<div className="logocontainer">
+						<img src={Logo} alt="RDS Logo" className="navbarlogo" />
 					</div>
-					<ul className="navmenu">
-						<li className="navitem">
-							<button
-								className="navlinks"
-								onClick={() => handleLinkClick("Lighting")}
-							>
-								Lighting
-							</button>
-						</li>
-						<li className="navitem">
-							<button
-								className="navlinks"
-								onClick={() => handleLinkClick("Cinematography")}
-							>
-								Cinematography
-							</button>
-						</li>
-						<li className="navitem">
-							<button
-								className="navlinks"
-								onClick={() => handleLinkClick("VFX")}
-							>
-								VFX
-							</button>
-						</li>
-						<li className="navitem">
-							<button
-								className="navlinks"
-								onClick={() => handleLinkClick("Graphics")}
-							>
-								Graphics
-							</button>
-						</li>
-						<li className="navitem">
-							<button
-								className="navlinks"
-								onClick={() => handleLinkClick("WebDesign")}
-							>
-								Web Design
-							</button>
-						</li>
-						<li className="navitem">
-							<button
-								className="navlinks"
-								onClick={() => handleLinkClick("Music")}
-							>
-								Music
-							</button>
-						</li>
-					</ul>
 				</div>
-			)}
+				<ul className="navmenu">
+					<li className="navitem">
+						<button
+							className="navlinks"
+							onClick={() => handleLinkClick("Lighting")}
+						>
+							Lighting
+						</button>
+					</li>
+					<li className="navitem">
+						<button
+							className="navlinks"
+							onClick={() => handleLinkClick("Cinematography")}
+						>
+							Cinematography
+						</button>
+					</li>
+					<li className="navitem">
+						<button className="navlinks" onClick={() => handleLinkClick("VFX")}>
+							VFX
+						</button>
+					</li>
+					<li className="navitem">
+						<button
+							className="navlinks"
+							onClick={() => handleLinkClick("Graphics")}
+						>
+							Graphics
+						</button>
+					</li>
+					<li className="navitem">
+						<button
+							className="navlinks"
+							onClick={() => handleLinkClick("WebDesign")}
+						>
+							Web Design
+						</button>
+					</li>
+					<li className="navitem">
+						<button
+							className="navlinks"
+							onClick={() => handleLinkClick("Music")}
+						>
+							Music
+						</button>
+					</li>
+				</ul>
+			</div>
 		</nav>
 	);
 };

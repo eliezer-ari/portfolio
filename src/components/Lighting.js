@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 // Import images for each project
 import Image1 from "./images/popmstill3.jpg";
-import Image2 from "./images/swdjstill.jpeg";
+import Image2 from "./images/swdjstill.png";
 import Image3 from "./images/laufeystill.png";
 import Image4 from "./images/gentlemenstill.png";
 import Image5 from "./images/futurestill.png";
@@ -21,7 +21,7 @@ const Lighting = ({ setNextSection }) => {
 	const videoUrl =
 		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/lightingloop.mp4";
 	const mobileVideoUrl =
-		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/lightingreelmobile.mp4";
+		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/lightingloopmobile.mp4";
 
 	const desktopVideoRef = useRef(null);
 	const [isMobile, setIsMobile] = useState(false);
