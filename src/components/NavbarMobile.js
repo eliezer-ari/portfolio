@@ -1,9 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import "./styles/Navbar.css";
+import Logo from "./images/namelogo.png";
 
 const NavbarMobile = ({ setActiveSection, activeSection }) => {
-	const menuRef = useRef(null);
-
 	const handleLinkClick = (section) => {
 		setActiveSection(section);
 	};
@@ -15,14 +14,13 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 			}`}
 		>
 			{activeSection === "Home" && (
-				// Menu for the Home section
-				<div
-					className={`navbarmobilecontainer open ${
-						activeSection === "Home" ? "slide-in" : "slide-out"
-					}`}
-					ref={menuRef}
-				>
-					<ul className="navmenu slide-in">
+				<div className="navbarmobilecontainer">
+					<div className="logospacer">
+						<div className="logocontainer">
+							<img src={Logo} alt="RDS Logo" className="navbarlogo" />
+						</div>
+					</div>
+					<ul className="navmenu">
 						<li className="navitem">
 							<button
 								className="navlinks"

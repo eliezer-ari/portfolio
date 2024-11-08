@@ -3,21 +3,11 @@ import "./styles/Standard.css";
 import "./styles/WebDesign.css";
 import Contact from "./Contact.js";
 
-const WebDesign = ({ setNextSection, setTriggerRef }) => {
-	const triggerRef = useRef(null);
-
+const WebDesign = ({ setNextSection }) => {
 	// Function to handle back to home navigation with animation
 	const handleBackToHome = () => {
 		setNextSection("Home"); // Set nextSection to "Home" to trigger the animation
 	};
-
-	useEffect(() => {
-		// Set the trigger reference when the component mounts
-		if (setTriggerRef) {
-			setTriggerRef(triggerRef);
-			console.log("triggerRef set in Home:", triggerRef); // Debugging log
-		}
-	}, [setTriggerRef]);
 
 	return (
 		<>
@@ -34,9 +24,7 @@ const WebDesign = ({ setNextSection, setTriggerRef }) => {
 				<div className="website-copy">
 					<h1>Responsive websites coded in React JS.</h1>
 				</div>
-				<div className="trigger-container">
-					<div ref={triggerRef} className="trigger"></div>{" "}
-				</div>
+
 				<iframe
 					id="site1"
 					title="frame"

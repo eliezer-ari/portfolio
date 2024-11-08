@@ -22,17 +22,14 @@ iframe {
 
 .site1 {
 	transform: scale(0.2) translateX(-140rem);
-	z-index: 10;
 }
 
 .site2 {
 	transform: scale(0.2);
-	z-index: 10;
 }
 
 .site3 {
 	transform: scale(0.2) translateX(140rem);
-	z-index: 10;
 }
 
 .fadeOut {

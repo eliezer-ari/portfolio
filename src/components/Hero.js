@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/Hero.css";
 import Navbar from "./Navbar.js";
 import NavbarMobile from "./NavbarMobile.js";
 import WebDesign from "./WebDesign.js";
 import VFX from "./VFX.js";
-import Videography from "./Videography.js";
 import Lighting from "./Lighting.js";
 import Music from "./Music.js";
 import Graphics from "./Graphics.js";
@@ -12,148 +11,103 @@ import Cinematography from "./Cinematography.js";
 import Home from "./Home.js";
 
 export default function Hero() {
-	const videoRef = useRef(null);
-
-	useEffect(() => {
-		const playVideo = () => {
-			if (videoRef.current) {
-				videoRef.current.play().catch((error) => {
-					console.log("Autoplay failed:", error);
-				});
-			}
-		};
-
-		document.addEventListener("click", playVideo);
-		return () => document.removeEventListener("click", playVideo);
-	}, []);
-
 	const [activeSection, setActiveSection] = useState("Home");
-	const [nextSection, setNextSection] = useState(null);
-	const [showSection, setShowSection] = useState(true);
-	const containerRef = useRef(null);
-	const [triggerRef, setTriggerRef] = useState(null); // State to hold trigger reference from each page
+	const [isTransitioning, setIsTransitioning] = useState(false);
+	const [visibleSection, setVisibleSection] = useState("Home");
 
-	useEffect(() => {
-		// Debugging log to confirm triggerRef is set in Hero
-		console.log("Updated triggerRef in Hero:", triggerRef);
-	}, [triggerRef]);
-
-	// Set initial section based on URL hash
-	useEffect(() => {
-		const hash = window.location.hash.replace("#", "");
-		if (hash) {
-			setActiveSection(hash);
-		}
-	}, []);
-
-	// Handle section transition with slide effects
-	useEffect(() => {
-		if (nextSection !== null) {
-			setShowSection(false); // Start slide-out effect
-			const slideOutTimeout = setTimeout(() => {
-				setActiveSection(nextSection);
-				window.location.hash = nextSection;
-				setShowSection(true); // Trigger slide-in effect
-				setNextSection(null);
-				if (containerRef.current) {
-					containerRef.current.scrollTop = 0;
-				}
-			}, 500);
-			return () => clearTimeout(slideOutTimeout);
-		}
-	}, [nextSection]);
-
-	// Update the next section to trigger the slide effect
 	const handleSectionChange = (section) => {
-		setNextSection(section);
+		if (section !== activeSection) {
+			setIsTransitioning(true);
+			const sectionContainer = document.querySelector(".section-container");
+
+			// Set up transitionend listener to update display after fade-out
+			const onTransitionEnd = () => {
+				setVisibleSection(section);
+				setActiveSection(section);
+				setIsTransitioning(false);
+				window.location.hash = section;
+				sessionStorage.setItem("lastActiveSection", section);
+				sectionContainer.removeEventListener("transitionend", onTransitionEnd);
+			};
+
+			// Attach listener and initiate transition
+			sectionContainer.addEventListener("transitionend", onTransitionEnd);
+		}
 	};
 
-	// Render the active section component
+	// Function to set the next section, used by back button in `Lighting`
+	const setNextSection = (section) => {
+		handleSectionChange(section);
+	};
+
+	const [isNavMobileVisible, setIsNavMobileVisible] = useState(true);
+
+	// Manage visibility of the mobile nav
+	useEffect(() => {
+		if (activeSection === "Home") {
+			setIsNavMobileVisible(true);
+		} else {
+			setTimeout(() => setIsNavMobileVisible(false), 500);
+		}
+	}, [activeSection]);
+
+	// Set initial section based on sessionStorage or hash in URL
+	useEffect(() => {
+		const savedSection = sessionStorage.getItem("lastActiveSection");
+		const initialSection =
+			window.location.hash.replace("#", "") || savedSection || "Home";
+		setActiveSection(initialSection);
+	}, []);
+
 	const renderSection = () => {
 		switch (activeSection) {
-			case "Home":
-				return (
-					<Home setNextSection={setNextSection} setTriggerRef={setTriggerRef} />
-				);
 			case "Cinematography":
-				return (
-					<Cinematography
-						setNextSection={setNextSection}
-						setTriggerRef={setTriggerRef}
-					/>
-				);
-			case "Videography":
-				return (
-					<Videography
-						setNextSection={setNextSection}
-						setTriggerRef={setTriggerRef}
-					/>
-				);
+				return <Cinematography setNextSection={setNextSection} />;
+
 			case "Lighting":
-				return (
-					<Lighting
-						setNextSection={setNextSection}
-						setTriggerRef={setTriggerRef}
-					/>
-				);
+				return <Lighting setNextSection={setNextSection} />; // Pass setNextSection
 			case "VFX":
-				return (
-					<VFX setNextSection={setNextSection} setTriggerRef={setTriggerRef} />
-				);
+				return <VFX setNextSection={setNextSection} />;
 			case "Graphics":
-				return (
-					<Graphics
-						setNextSection={setNextSection}
-						setTriggerRef={setTriggerRef}
-					/>
-				);
+				return <Graphics setNextSection={setNextSection} />;
 			case "WebDesign":
-				return (
-					<WebDesign
-						setNextSection={setNextSection}
-						setTriggerRef={setTriggerRef}
-					/>
-				);
+				return <WebDesign setNextSection={setNextSection} />;
 			case "Music":
-				return (
-					<Music
-						setNextSection={setNextSection}
-						setTriggerRef={setTriggerRef}
-					/>
-				);
+				return <Music setNextSection={setNextSection} />;
 			default:
-				return null;
+				return <Home />;
 		}
 	};
 
 	return (
 		<div id="hero" className="herocontainer">
-			<div id="page-container" ref={containerRef} className="page-container">
+			<div id="page-container" className="page-container">
 				<div
 					className={`section-container ${
-						showSection ? "slide-in" : "slide-out"
+						isTransitioning ? "fade-out" : "fade-in"
 					}`}
 				>
-					{renderSection()}
+					{renderSection(activeSection)}
 				</div>
 			</div>
 			<div className="navreplacement">
 				<Navbar
 					setActiveSection={handleSectionChange}
-					triggerRef={triggerRef}
-				/>
-			</div>
-			<div
-				className={`navreplacementmobile ${
-					activeSection === "Home" ? "slide-in" : "slide-out"
-				}`}
-			>
-				<NavbarMobile
-					setActiveSection={handleSectionChange}
 					activeSection={activeSection}
-					triggerRef={triggerRef}
 				/>
 			</div>
+			{isNavMobileVisible && (
+				<div
+					className={`navreplacementmobile ${
+						activeSection === "Home" ? "fade-in" : "fade-out"
+					}`}
+				>
+					<NavbarMobile
+						setActiveSection={handleSectionChange}
+						activeSection={activeSection}
+					/>
+				</div>
+			)}
 		</div>
 	);
 }

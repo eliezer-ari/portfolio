@@ -3,21 +3,12 @@ import "./styles/Standard.css";
 import AudioPlayer from "./AudioPlayer";
 import Contact from "./Contact";
 
-const Music = ({ setNextSection, setTriggerRef }) => {
-	const triggerRef = useRef(null);
-
+const Music = ({ setNextSection }) => {
 	// Function to handle back to home navigation with animation
 	const handleBackToHome = () => {
 		setNextSection("Home"); // Set nextSection to "Home" to trigger the animation
 	};
 
-	useEffect(() => {
-		// Set the trigger reference when the component mounts
-		if (setTriggerRef) {
-			setTriggerRef(triggerRef);
-			console.log("triggerRef set in Home:", triggerRef); // Debugging log
-		}
-	}, [setTriggerRef]);
 	return (
 		<>
 			<div className="standard-container">
@@ -29,9 +20,6 @@ const Music = ({ setNextSection, setTriggerRef }) => {
 					>
 						&#x2303;
 					</button>
-				</div>
-				<div className="trigger-container">
-					<div ref={triggerRef} className="trigger"></div>{" "}
 				</div>
 				<div className="player">
 					<AudioPlayer />

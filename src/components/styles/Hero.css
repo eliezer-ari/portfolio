@@ -8,7 +8,7 @@
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
-	overflow: auto;
+	overflow-y: auto;
 	overflow-x: hidden;
 	background-color: #000; /* Neutral background */
 }
@@ -20,36 +20,36 @@
 	padding: 0;
 	margin: 0;
 	width: 100vw;
+	min-height: calc(100vh - 50px);
 	height: calc(100vh - 50px);
 }
-@keyframes slideIn {
+/* @keyframes slideIn {
 	from {
 		opacity: 0;
-		display: none;
 	}
 	to {
 		opacity: 1;
-		display: flex;
 	}
 }
 
 @keyframes slideOut {
 	from {
 		opacity: 1;
-		display: flex;
 	}
 	to {
 		opacity: 0;
-		display: none;
 	}
+} */
+.section-container {
+	transition: opacity 0.5s ease; /* Match this to the JS timeout */
 }
 
-.slide-in {
-	animation: slideIn 0.3s ease-in-out forwards;
+.fade-in {
+	opacity: 1;
 }
 
-.slide-out {
-	animation: slideOut 0.3s ease-in-out forwards;
+.fade-out {
+	opacity: 0;
 }
 
 .herocontainer .navreplacement {
@@ -92,19 +92,13 @@
 
 @media screen and (max-width: 960px) {
 	.herocontainer .navreplacement {
-		display: flex;
-		width: 100vw;
-		height: auto;
-		bottom: auto;
-		top: 0;
-		position: fixed;
-		z-index: 1099;
+		display: none;
 	}
 
 	.herocontainer .navreplacementmobile {
 		display: flex;
 		width: 100vw;
-		height: calc(100vh - 56.8px);
+		height: 100vh;
 		/* bottom: 1rem;
 		top: auto; */
 		position: fixed;

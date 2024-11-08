@@ -1,11 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import "./styles/Standard.css";
-import LightingLoop from "./images/lightingloop.mp4";
 import "./styles/PastProjects.css";
-import { Link } from "react-router-dom";
-
 import Contact from "./Contact";
-import { getUrl } from "@aws-amplify/storage"; // Import getUrl
+import { Link } from "react-router-dom";
 
 // Import images for each project
 import Image1 from "./images/popmstill3.jpg";
@@ -16,35 +13,70 @@ import Image5 from "./images/futurestill.png";
 import Image6 from "./images/tiulstill.png";
 
 // Additional carousel images for a project
-import CarouselImage1 from "./images/popmstill2.jpg";
-import CarouselImage2 from "./images/popmstill1.jpg";
+import CarouselImage1 from "./images/popmstill1.jpg";
+import CarouselImage2 from "./images/popmstill2.jpg";
 import CarouselImage3 from "./images/popmstill3.jpg";
 
-export default function Lighting({ setNextSection, setTriggerRef }) {
-	const triggerRef = useRef(null);
-
-	useEffect(() => {
-		// Set the trigger reference when the component mounts
-		if (setTriggerRef) {
-			setTriggerRef(triggerRef);
-			console.log("triggerRef set in Lighting:", triggerRef); // Debugging log
-		}
-	}, [setTriggerRef]);
-
+const Lighting = ({ setNextSection }) => {
 	const videoUrl =
 		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/lightingloop.mp4";
-
 	const mobileVideoUrl =
 		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/lightingreelmobile.mp4";
 
-	const [currentImageIndex, setCurrentImageIndex] = useState(0);
+	const desktopVideoRef = useRef(null);
+	const [isMobile, setIsMobile] = useState(false);
+	const videoRef = useRef(null);
+
+	// Check if it's mobile or desktop
+	useEffect(() => {
+		const mediaQuery = window.matchMedia("(max-width: 960px)");
+		setIsMobile(mediaQuery.matches);
+
+		const handleMediaChange = (e) => {
+			setIsMobile(e.matches);
+			console.log("Media change detected:", e.matches);
+		};
+
+		mediaQuery.addEventListener("change", handleMediaChange);
+		return () => mediaQuery.removeEventListener("change", handleMediaChange);
+	}, []);
+
+	// Attempt to play video when mounted or when `isMobile` changes
+	useEffect(() => {
+		const video = videoRef.current;
+		if (video) {
+			console.log("Attempting to play video directly on mount/change.");
+
+			video
+				.play()
+				.then(() => {
+					console.log("Video playback successful.");
+					// Check dimensions and visibility
+					const rect = video.getBoundingClientRect();
+					console.log("Video dimensions:", rect.width, "x", rect.height);
+					console.log(
+						"Video is visible:",
+						rect.width > 0 &&
+							rect.height > 0 &&
+							rect.top >= 0 &&
+							rect.bottom <= window.innerHeight
+					);
+				})
+				.catch((error) => {
+					console.error("Video playback failed:", error);
+				});
+		} else {
+			console.log("Video ref is not available.");
+		}
+	}, [isMobile]);
+
+	const handleBackToHome = () => {
+		setNextSection("Home");
+	};
+
 	const [modalContent, setModalContent] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	// Function to handle back to home navigation with animation
-	const handleBackToHome = () => {
-		setNextSection("Home"); // Set nextSection to "Home" to trigger the animation
-	};
+	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
 	const openModal = (project) => {
 		if (project.hasModal) {
@@ -58,11 +90,26 @@ export default function Lighting({ setNextSection, setTriggerRef }) {
 		setIsModalOpen(false);
 	};
 
+	// Carousel navigation functions
+	const nextImage = () => {
+		setCurrentImageIndex(
+			(prevIndex) => (prevIndex + 1) % modalContent.carouselImages.length
+		);
+	};
+
+	const prevImage = () => {
+		setCurrentImageIndex(
+			(prevIndex) =>
+				(prevIndex - 1 + modalContent.carouselImages.length) %
+				modalContent.carouselImages.length
+		);
+	};
+
 	const projects = [
 		{
 			id: 1,
 			type: "large",
-			medium: "[Feature Film]",
+			medium: "Feature Film:",
 			title: "Lloyd Kaufman’s The Power of Positive Murder",
 			status: "",
 			role: "Lighting Technician (Grip & Electric)",
@@ -78,7 +125,7 @@ export default function Lighting({ setNextSection, setTriggerRef }) {
 		{
 			id: 2,
 			type: "small",
-			medium: "[Event Space]",
+			medium: "Event Space:",
 			title: "Support Women DJs Studio",
 			status: "In Progress",
 			role: "Chief Lighting Technician",
@@ -92,7 +139,7 @@ export default function Lighting({ setNextSection, setTriggerRef }) {
 		{
 			id: 3,
 			type: "small",
-			medium: "[TV Spot]",
+			medium: "TV Spot:",
 			title: "Laufey - From The Start (Live) | Microsoft",
 			status: "",
 			role: "Lighting Technician (Grip)",
@@ -106,7 +153,7 @@ export default function Lighting({ setNextSection, setTriggerRef }) {
 		{
 			id: 4,
 			type: "small",
-			medium: "[Live Event]",
+			medium: "Promotional Short:",
 			title: "Professor McConaughey on THE GENTLEMEN",
 			status: "",
 			role: "Lighting Technician & Camera Operator",
@@ -120,7 +167,7 @@ export default function Lighting({ setNextSection, setTriggerRef }) {
 		{
 			id: 5,
 			type: "large",
-			medium: "[TV Spot]",
+			medium: "TV Spot:",
 			title: "Introducing Future: Unlimited Personal Training",
 			status: "",
 			role: "Lighting Technician (Grip)",
@@ -148,21 +195,6 @@ export default function Lighting({ setNextSection, setTriggerRef }) {
 		},
 	];
 
-	// Carousel navigation functions
-	const nextImage = () => {
-		setCurrentImageIndex(
-			(prevIndex) => (prevIndex + 1) % modalContent.carouselImages.length
-		);
-	};
-
-	const prevImage = () => {
-		setCurrentImageIndex(
-			(prevIndex) =>
-				(prevIndex - 1 + modalContent.carouselImages.length) %
-				modalContent.carouselImages.length
-		);
-	};
-
 	return (
 		<>
 			<div className="standard-container">
@@ -175,21 +207,23 @@ export default function Lighting({ setNextSection, setTriggerRef }) {
 						&#x2303;
 					</button>
 				</div>
-
-				<div className="trigger-container">
-					<div ref={triggerRef} className="trigger"></div>{" "}
-					{/* Trigger element */}
-				</div>
-				<div className="video-container">
+				<video
+					ref={desktopVideoRef}
+					src={isMobile ? mobileVideoUrl : videoUrl}
+					autoPlay
+					loop
+					muted
+					playsInline
+					preload="auto"
+					className={isMobile ? "video-background-mobile" : "video-background"}
+					onCanPlay={() => console.log("Video can play")}
+					onLoadedData={() => console.log("Video data loaded")}
+					onPlay={() => console.log("Video is playing")}
+					onError={(e) => console.error("Video error:", e)}
+				/>
+				{/* <div className="video-container-mobile">
 					<video
-						src={videoUrl}
-						autoPlay
-						loop
-						muted
-						playsInline
-						className="video-background"
-					/>
-					<video
+						ref={mobileVideoRef}
 						src={mobileVideoUrl}
 						autoPlay
 						loop
@@ -197,19 +231,8 @@ export default function Lighting({ setNextSection, setTriggerRef }) {
 						playsInline
 						className="video-background-mobile"
 					/>
-				</div>
-				<div className="arrow-container">
-					<div
-						style={{
-							transform: "rotate(180deg) translateY(-3px)",
-						}}
-						className="down-arrow"
-					>
-						&#x2303;
-					</div>
-				</div>
+				</div> */}
 			</div>
-
 			<div className="pastprojects-container">
 				<div className="past-projects-grid">
 					{projects.map((project) => (
@@ -616,10 +639,11 @@ export default function Lighting({ setNextSection, setTriggerRef }) {
 					)}
 				</div>
 			</div>
-
 			<div className="standard-container">
 				<Contact />
 			</div>
 		</>
 	);
-}
+};
+
+export default Lighting;
