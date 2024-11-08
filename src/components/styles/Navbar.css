@@ -190,6 +190,10 @@
 		padding-top: 1.8rem;
 	}
 
+	.navbarmobilecontainer .navbarlogo {
+		height: 2.5rem;
+	}
+
 	/* Styles for each nav item within the mobile menu */
 	.navbarmobilecontainer .navmenu {
 		display: flex;

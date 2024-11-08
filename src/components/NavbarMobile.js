@@ -10,12 +10,17 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 	return (
 		<nav className="navbar-lower">
 			<div className="navbarmobilecontainer">
-				<div className="logospacer">
+				{/* <div className="logospacer">
 					<div className="logocontainer">
 						<img src={Logo} alt="RDS Logo" className="navbarlogo" />
 					</div>
-				</div>
+				</div> */}
 				<ul className="navmenu">
+					<li className="navitem">
+						<div className="logocontainer">
+							<img src={Logo} alt="RDS Logo" className="navbarlogo" />
+						</div>
+					</li>
 					<li className="navitem">
 						<button
 							className="navlinks"
