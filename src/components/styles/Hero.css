@@ -8,8 +8,8 @@
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
-	overflow-y: auto;
-	overflow-x: hidden;
+	/* overflow-y: auto;
+	overflow-x: hidden; */
 	background-color: #000; /* Neutral background */
 }
 
@@ -67,6 +67,7 @@
 	.herocontainer {
 		width: 100vw;
 		height: 100vh;
+		min-height: 100vh;
 	}
 
 	.section-container {
@@ -84,7 +85,7 @@
 		height: 100vh;
 		/* bottom: 1rem;
 		top: auto; */
-		position: absolute;
+		position: relative;
 		z-index: 1099;
 		justify-content: center;
 		align-items: center;
