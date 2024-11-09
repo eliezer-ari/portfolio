@@ -91,5 +91,27 @@
 		align-items: center;
 		bottom: 0;
 		transition: opacity 0.5s ease; /* Match this to the JS timeout */
+		background: radial-gradient(ellipse, rgba(76, 0, 0, 0.6) 30%, #000000 100%);
+		background-size: 150% 150%; /* Start larger to create zoom effect */
+		background-position: center;
+		animation: vignettePulse 9s ease-in-out infinite; /* Apply the animation */
+	}
+
+	@keyframes vignettePulse {
+		0% {
+			background-position: 50% 50%; /* Center */
+		}
+		25% {
+			background-position: 60% 40%; /* Slightly offset position */
+		}
+		50% {
+			background-position: 40% 60%; /* Offset to the other direction */
+		}
+		75% {
+			background-position: 50% 50%; /* Back to center */
+		}
+		100% {
+			background-position: 50% 50%; /* End at center */
+		}
 	}
 }
