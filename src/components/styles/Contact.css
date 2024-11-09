@@ -43,6 +43,9 @@
 	border-style: none;
 	border-color: #fff;
 	border-image: none;
+	-webkit-appearance: none; /* Removes default styling on iOS */
+	box-shadow: none; /* Removes inner shadow */
+	border-radius: 0;
 }
 
 .contact-container textarea {
@@ -55,6 +58,9 @@
 	border-style: none;
 	border-color: #fff;
 	border-image: none;
+	-webkit-appearance: none; /* Removes default styling on iOS */
+	box-shadow: none; /* Removes inner shadow */
+	border-radius: 0;
 }
 
 .contact-container input:placeholder-shown {
