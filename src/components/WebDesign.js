@@ -2,8 +2,17 @@ import React, { useEffect } from "react";
 import "./styles/Standard.css";
 import "./styles/WebDesign.css";
 import Contact from "./Contact.js";
+import { Link } from "react-router-dom";
+import Still from "./images/inputcapsitestill.png";
 
 const WebDesign = ({ setNextSection }) => {
+	const site1 =
+		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/frameloop.mp4";
+	const site2 =
+		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/inputcaploop.mp4";
+	const site3 =
+		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/portfoliositeloop.mp4";
+
 	const handleBackToHome = () => {
 		setNextSection("Home");
 	};
@@ -20,27 +29,38 @@ const WebDesign = ({ setNextSection }) => {
 						&#x2303;
 					</button>
 				</div>
-				<div className="website-copy">
-					<h1>Responsive websites coded in React JS.</h1>
+				<div className="website-parent">
+					<div className="sites-container">
+						<Link to="https://www.discoverframe.com/troma">
+							<video
+								className="sitevideo"
+								src={site1}
+								autoPlay
+								loop
+								muted
+								playsInline
+								preload="auto"
+							/>
+						</Link>
+						<Link to="https://www.inputcap.com">
+							<img src={Still} alt="" className="sitevideo" />
+						</Link>
+						<Link to="https://www.ariroseman.com">
+							<video
+								className="sitevideo"
+								src={site3}
+								autoPlay
+								loop
+								muted
+								playsInline
+								preload="auto"
+							/>
+						</Link>
+					</div>
+					<div className="website-copy">
+						<h1>Responsive websites coded in React JS.</h1>
+					</div>
 				</div>
-				<iframe
-					id="site1"
-					title="frame"
-					className="site1"
-					src="https://www.discoverframe.com/troma/"
-				></iframe>
-				<iframe
-					id="site2"
-					title="inputcap"
-					className="site2"
-					src="http://www.inputcap.com/"
-				></iframe>
-				<iframe
-					id="site3"
-					title="thiswebsite"
-					className="site3"
-					src="http://localhost:3000/#Lighting"
-				></iframe>
 			</div>
 
 			<div className="standard-container">

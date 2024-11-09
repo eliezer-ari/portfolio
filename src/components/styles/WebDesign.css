@@ -1,115 +1,46 @@
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-iframe {
-	position: absolute;
-	width: 1920px;
-	height: 1080px;
-	border: 0;
-	opacity: 0; /* Start with opacity 0 */
-	z-index: 5000;
-	animation: fadeIn 2s ease-out 2s forwards; /* 2s delay before fading in */
-	box-shadow: 0 1px 1px rgb(0 0 0 / 8%), 0 2px 2px rgb(0 0 0 / 8%),
-		0 4px 4px rgb(0 0 0 / 8%), 0 8px 8px rgb(0 0 0 / 8%),
-		0 16px 16px rgb(0 0 0 / 8%);
-}
-
-.site1 {
-	transform: scale(0.2) translateX(-140rem);
-}
-
-.site2 {
-	transform: scale(0.2);
-}
-
-.site3 {
-	transform: scale(0.2) translateX(140rem);
-}
-
-.fadeOut {
-	visibility: hidden;
-	opacity: 0;
-	-webkit-transition: all 1s ease-out;
-	-moz-transition: all 1s ease-out;
-	-ms-transition: all 1s ease-out;
-	-o-transition: all 1s ease-out;
-	transition: all 1s ease-out;
-	transform: translate(0, -50px);
-	-webkit-transform: translate(0, -50px);
-	-o-transform: translate(0, -50px);
-	-moz-transform: translate(0, -50px);
-}
-
-.website-copy {
+.website-parent {
 	display: flex;
 	position: absolute;
-	justify-content: center;
-	align-items: center;
-	min-width: 100vw;
-	height: 100vh;
-	z-index: 100;
-	pointer-events: none;
-}
-
-.website-copy h1 {
-	transform: translateY(200px);
-	color: #fff;
-	max-width: 90vw;
-	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	width: 100vw;
+}
+
+.sites-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	max-width: 90vw;
+	gap: 3rem;
+}
+
+.sitevideo {
+	display: flex;
+	position: relative;
+	width: 25vw;
+	height: auto;
+}
+
+.website-copy {
 	text-align: center;
+	padding-top: 2rem;
+	max-width: 80vw;
 }
 
-@media (max-width: 1300px) {
-	.site1 {
-		transform: scale(0.2) translateX(0) translateY(-80rem);
+@media (max-width: 960px) {
+	.sites-container {
+		display: flex;
+		flex-direction: column;
+		max-width: 90vw;
+		gap: 2rem;
+	}
+	.sitevideo {
+		width: 50vw;
 	}
 
-	.site2 {
-		transform: scale(0.2);
-	}
-
-	.site3 {
-		transform: scale(0.2) translateX(0) translateY(80rem);
-	}
-
-	.website-copy h1 {
-		display: none;
-	}
-}
-
-@media (max-width: 900px) {
-	.site1 {
-		transform: scale(0.18) translateY(-80rem);
-	}
-
-	.site2 {
-		transform: scale(0.18);
-	}
-
-	.site3 {
-		transform: scale(0.18) translateY(80rem);
-	}
-}
-
-@media (max-width: 650px) {
-	.site1 {
-		transform: scale(0.15) translateY(-100rem);
-	}
-
-	.site2 {
-		transform: scale(0.15) translateY(0rem);
-	}
-
-	.site3 {
-		transform: scale(0.15) translateY(100rem);
+	.website-copy {
+		font-size: 0.8rem;
 	}
 }

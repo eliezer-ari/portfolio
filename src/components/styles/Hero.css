@@ -66,7 +66,7 @@
 @media screen and (max-width: 960px) {
 	.herocontainer {
 		width: 100vw;
-		min-height: 100vh;
+		height: 100vh;
 	}
 
 	.section-container {
@@ -84,7 +84,7 @@
 		height: 100vh;
 		/* bottom: 1rem;
 		top: auto; */
-		position: fixed;
+		position: absolute;
 		z-index: 1099;
 		justify-content: center;
 		align-items: center;

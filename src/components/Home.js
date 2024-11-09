@@ -55,6 +55,8 @@ const Home = () => {
 		}
 	}, [isMobile]);
 
+	const containerRef = useRef(null);
+
 	return (
 		<div className="standard-container">
 			<video

@@ -16,6 +16,12 @@
 	z-index: 1199;
 }
 
+.logosvg {
+	fill: #ffffff; /* Set the color to white */
+	width: 100%; /* Makes it responsive */
+	height: 1.25rem; /* Keeps aspect ratio */
+}
+
 /* pushes logo to the left */
 .logospacer {
 	display: flex;
@@ -178,7 +184,7 @@
 		justify-content: center;
 		align-items: center;
 		z-index: 9000;
-		height: 100vh;
+		height: 100vh !important;
 		width: 100vw;
 	}
 
@@ -198,7 +204,7 @@
 	.navbarmobilecontainer .navmenu {
 		display: flex;
 		flex-direction: column;
-		height: 100%;
+		height: 80vh;
 		gap: 0;
 		align-items: center;
 		justify-content: space-around;
