@@ -3,7 +3,9 @@ import "./styles/Standard.css";
 import "./styles/WebDesign.css";
 import Contact from "./Contact.js";
 import { Link } from "react-router-dom";
-import Still from "./images/inputcapsitestill.png";
+import Still1 from "./images/framestill.png";
+import Still2 from "./images/inputcapsitestill.png";
+import Still3 from "./images/portfoliostill.png";
 
 const WebDesign = ({ setNextSection }) => {
 	const site1 =
@@ -32,29 +34,13 @@ const WebDesign = ({ setNextSection }) => {
 				<div className="website-parent">
 					<div className="sites-container">
 						<Link to="https://www.discoverframe.com/troma">
-							<video
-								className="sitevideo"
-								src={site1}
-								autoPlay
-								loop
-								muted
-								playsInline
-								preload="auto"
-							/>
+							<img src={Still1} alt="" className="sitevideo" />
 						</Link>
 						<Link to="https://www.inputcap.com">
-							<img src={Still} alt="" className="sitevideo" />
+							<img src={Still2} alt="" className="sitevideo" />
 						</Link>
 						<Link to="https://www.ariroseman.com">
-							<video
-								className="sitevideo"
-								src={site3}
-								autoPlay
-								loop
-								muted
-								playsInline
-								preload="auto"
-							/>
+							<img src={Still3} alt="" className="sitevideo" />
 						</Link>
 					</div>
 					<div className="website-copy">
@@ -62,8 +48,10 @@ const WebDesign = ({ setNextSection }) => {
 					</div>
 				</div>
 			</div>
-
-			<div className="standard-container">
+			<div className="special-bar-container">
+				<div className="onerem-bar"></div>
+			</div>
+			<div className="contact-parent">
 				<Contact />
 			</div>
 		</>

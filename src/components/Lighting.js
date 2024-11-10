@@ -114,7 +114,7 @@ const Lighting = ({ setNextSection }) => {
 		{
 			id: 1,
 			type: "large",
-			medium: "Feature Film:",
+			medium: "[Feature Film]",
 			title: "Lloyd Kaufman’s The Power of Positive Murder",
 			status: "",
 			role: "Lighting Technician (Grip & Electric)",
@@ -130,7 +130,7 @@ const Lighting = ({ setNextSection }) => {
 		{
 			id: 2,
 			type: "small",
-			medium: "Event Space:",
+			medium: "[Event Space]",
 			title: "Support Women DJs Studio",
 			status: "In Progress",
 			role: "Chief Lighting Technician",
@@ -144,7 +144,7 @@ const Lighting = ({ setNextSection }) => {
 		{
 			id: 3,
 			type: "small",
-			medium: "TV Spot:",
+			medium: "[TV Spot]",
 			title: "Laufey - From The Start (Live) | Microsoft",
 			status: "",
 			role: "Lighting Technician (Grip)",
@@ -158,7 +158,7 @@ const Lighting = ({ setNextSection }) => {
 		{
 			id: 4,
 			type: "small",
-			medium: "Promotional Short:",
+			medium: "[Promotional Short]",
 			title: "Professor McConaughey on THE GENTLEMEN",
 			status: "",
 			role: "Lighting Technician & Camera Operator",
@@ -172,7 +172,7 @@ const Lighting = ({ setNextSection }) => {
 		{
 			id: 5,
 			type: "large",
-			medium: "TV Spot:",
+			medium: "[TV Spot]",
 			title: "Introducing Future: Unlimited Personal Training",
 			status: "",
 			role: "Lighting Technician (Grip)",
@@ -254,9 +254,10 @@ const Lighting = ({ setNextSection }) => {
 							<img src={project.image} alt={project.title} />
 							<div className="project-content">
 								<div className="project-header">
-									<h1>{project.title}</h1>
-									<h4>{project.medium}</h4>
-									{project.status && <h2>{project.status}</h2>}
+									<h1>
+										{project.title} <h4>{project.medium}</h4>{" "}
+										{project.status && <h2>{project.status}</h2>}
+									</h1>
 								</div>
 								<h3>{project.role}</h3>
 							</div>

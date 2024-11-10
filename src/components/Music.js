@@ -25,7 +25,7 @@ const Music = ({ setNextSection }) => {
 					<AudioPlayer />
 				</div>
 			</div>
-			<div className="standard-container">
+			<div className="contact-parent">
 				<Contact />
 			</div>
 		</>

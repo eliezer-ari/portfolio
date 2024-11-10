@@ -6,22 +6,22 @@
 	position: relative;
 	height: 100%;
 	width: 100%;
-	padding-top: 10rem;
-	padding-bottom: 10rem;
+	padding-top: 6rem;
+	padding-bottom: 6rem;
 
 	background: radial-gradient(
 			circle at 20% 30%,
-			rgba(255, 0, 0, 0.4) 20%,
+			rgba(255, 242, 0, 0.4) 20%,
 			transparent 60%
 		),
 		radial-gradient(
 			circle at 80% 70%,
-			rgba(255, 255, 0, 0.4) 20%,
+			rgba(255, 0, 0, 0.4) 20%,
 			transparent 60%
 		),
 		radial-gradient(
 			circle at 50% 50%,
-			rgba(0, 0, 255, 0.6) 20%,
+			rgba(255, 0, 221, 0.6) 20%,
 			transparent 60%
 		);
 	background-size: 200% 200%; /* Large size to allow movement */
@@ -80,6 +80,11 @@
 	-webkit-appearance: none; /* Removes default styling on iOS */
 	box-shadow: none; /* Removes inner shadow */
 	border-radius: 0;
+	padding-left: 1rem;
+	padding-top: 0.3rem;
+	padding-bottom: 0.3rem;
+	-webkit-text-size-adjust: 100%; /* Prevents automatic zoom on iOS */
+	font-size: 16px;
 }
 
 .contact-container textarea {
@@ -95,20 +100,19 @@
 	-webkit-appearance: none; /* Removes default styling on iOS */
 	box-shadow: none; /* Removes inner shadow */
 	border-radius: 0;
+	padding-left: 1rem;
+	padding-top: 0.8rem;
+	padding-bottom: 0.3rem;
+	-webkit-text-size-adjust: 100%; /* Prevents automatic zoom on iOS */
+	font-size: 16px;
 }
 
 .contact-container input:placeholder-shown {
 	font-family: "Sen", sans-serif;
-	padding-left: 1rem;
-	padding-top: 0.3rem;
-	padding-bottom: 0.3rem;
 }
 
 .contact-container textarea:placeholder-shown {
 	font-family: "Sen", sans-serif;
-	padding-left: 1rem;
-	padding-top: 0.8rem;
-	padding-bottom: 0.3rem;
 }
 
 .contact-container button {

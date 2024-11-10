@@ -81,6 +81,17 @@
 	transition: opacity 0.3s ease;
 }
 
+/* Dimming effect on hover for items that have a modal */
+.grid-item:not(.no-hover):hover img {
+	opacity: 0.7;
+}
+
+/* No dimming effect for items with the no-hover class */
+.grid-item.no-hover:hover img {
+	opacity: 1; /* Keep opacity at 1 to prevent dimming */
+	cursor: default;
+}
+
 /* Style for the title overlay in each grid item */
 .project-title {
 	position: absolute;
@@ -161,20 +172,20 @@
 }
 
 .project-header h4 {
-	font-size: 1.2em;
+	font-size: 1em;
 	font-weight: bold;
 	margin: 0;
 }
 
 .project-header h1 {
-	font-size: 1.2em;
+	font-size: 1em;
 	font-weight: bold;
 	font-style: italic;
 	margin: 0;
 }
 
 .project-header h2 {
-	font-size: 1.2em;
+	font-size: 1em;
 	/* font-style: italic; */
 	color: #cc32b2;
 	margin: 0;
@@ -207,8 +218,8 @@
 
 /* Responsive iframe styling */
 .video-wrapper iframe {
-	width: 50%;
-	height: 40%; /* Maintain aspect ratio */
+	width: 100%;
+	height: 100%; /* Maintain aspect ratio */
 	max-width: 100%; /* Constrain width to container */
 	max-height: 100%; /* Constrain height to container */
 }
@@ -338,8 +349,24 @@
 }
 
 @media (max-width: 960px) {
+	.past-projects-grid-square {
+		grid-template-columns: auto; /* Three equal columns */
+		grid-template-rows: repeat(2, 1fr);
+	}
+
+	/* Dimming effect on hover for items that have a modal */
+	.grid-item:not(.no-hover):hover img {
+		opacity: 1;
+	}
+
+	/* No dimming effect for items with the no-hover class */
+	.grid-item.no-hover:hover img {
+		opacity: 1; /* Keep opacity at 1 to prevent dimming */
+		cursor: default;
+	}
 	.pastprojects-container {
 		min-height: calc(100vh);
+		height: 100vh;
 		width: 100vw;
 		padding: 0;
 		margin: 0;
@@ -365,11 +392,12 @@
 	}
 	/* title */
 	.project-header h1 {
-		font-size: 0.9em;
+		font-size: 0.8em;
 		font-weight: bold;
 		font-style: italic;
 		margin: 0;
 		width: 90%;
+		padding-left: 0.5rem;
 	}
 
 	/* medium */
@@ -385,13 +413,15 @@
 		/* font-style: italic; */
 		color: #cc32b2;
 		margin: 0;
+		padding-top: 0.2rem !important;
 	}
 
 	/* Styling for the role and description */
 	.project-content h3 {
-		font-size: 0.8em;
+		font-size: 0.7em;
 		font-weight: normal;
 		padding-top: 0.25rem;
+		padding-left: 0.5rem;
 
 		margin: 0;
 	}

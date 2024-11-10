@@ -68,15 +68,8 @@ body {
 	padding: 0;
 	height: 100%;
 	-webkit-text-size-adjust: 100%; /* Prevents automatic zooming */
+	-webkit-overflow-scrolling: touch;
 }
-
-/* Prevent layout shifting on Safari by setting fixed viewport heights */
-@supports (-webkit-touch-callout: none) {
-	.standard-container {
-		min-height: -webkit-fill-available; /* Helps with height issues on iOS */
-	}
-}
-
 @keyframes floatingColors {
 	0% {
 		background-position: 20% 30%, 80% 70%, 50% 50%;

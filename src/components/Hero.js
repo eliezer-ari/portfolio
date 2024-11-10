@@ -19,6 +19,7 @@ export default function Hero() {
 		if (section !== activeSection) {
 			setIsTransitioning(true);
 			const sectionContainer = document.querySelector(".section-container");
+			window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 
 			// Set up transitionend listener to update display after fade-out
 			const onTransitionEnd = () => {
@@ -58,6 +59,16 @@ export default function Hero() {
 			window.location.hash.replace("#", "") || savedSection || "Home";
 		setActiveSection(initialSection);
 	}, []);
+
+	// Set the actual viewport height on mobile devices
+	function setVhProperty() {
+		const vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty("--vh", `${vh}px`);
+	}
+
+	// Initial setting and on resize
+	setVhProperty();
+	window.addEventListener("resize", setVhProperty);
 
 	const renderSection = () => {
 		switch (activeSection) {

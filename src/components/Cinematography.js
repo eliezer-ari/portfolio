@@ -486,7 +486,7 @@ const Cinematography = ({ setNextSection }) => {
 					)}
 				</div>
 			</div>
-			<div className="standard-container">
+			<div className="contact-parent">
 				<Contact />
 			</div>
 		</>
