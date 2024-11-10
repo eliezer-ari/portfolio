@@ -3,8 +3,12 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	position: relative;
 	height: 100%;
-	width: 100vw;
+	width: 100%;
+	padding-top: 10rem;
+	padding-bottom: 10rem;
+
 	background: radial-gradient(
 			circle at 20% 30%,
 			rgba(255, 0, 0, 0.4) 20%,
@@ -23,6 +27,14 @@
 	background-size: 200% 200%; /* Large size to allow movement */
 	background-position: 20% 30%, 80% 70%, 50% 50%; /* Starting positions */
 	animation: floatingColors 5s ease-in-out infinite alternate;
+}
+
+.contact-content {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	justify-content: center;
+	align-items: center;
 }
 
 .contact-container form {
@@ -47,7 +59,9 @@
 }
 
 .contact-container h1 {
-	padding: 0;
+	width: 30rem; /* Match the width of the input fields */
+	max-width: 80vw; /* Match the responsive max-width of the inputs */
+	text-align: left; /* Center the text within the h1 */
 	margin: 0;
 	padding-bottom: 1rem;
 	font-size: 1.5rem;
@@ -122,4 +136,11 @@
 	background-color: #a3a3a3;
 	color: #000;
 	transition: ease-in-out 50ms;
+}
+
+@media (max-width: 960px) {
+	.contact-container {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
 }

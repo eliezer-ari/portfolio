@@ -8,7 +8,6 @@
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	overflow-y: auto; /* Enable scrolling */
 }
 
 /* Container for the grid layout */
@@ -20,7 +19,7 @@
 	padding: 1rem; /* Internal padding instead of margin */
 	padding-left: 0;
 	padding-right: 0;
-	height: calc(100vh - 50px); /* Adjust height based on viewport */
+	height: 100%; /* Adjust height based on viewport */
 	padding-top: 1rem;
 	padding-bottom: 1rem;
 	width: 100vw;
@@ -36,7 +35,7 @@
 	padding: 1rem; /* Internal padding instead of margin */
 	padding-left: 0;
 	padding-right: 0;
-	height: calc(100vh - 50px); /* Adjust height based on viewport */
+	height: 100%; /* Adjust height based on viewport */
 	width: 100vw;
 	box-sizing: border-box; /* Ensure padding does not cause overflow */
 }
@@ -49,7 +48,7 @@
 	padding: 1rem; /* Internal padding instead of margin */
 	padding-left: 0;
 	padding-right: 0;
-	height: calc(100vh - 50px); /* Adjust height based on viewport */
+	height: 100%; /* Adjust height based on viewport */
 	width: 100vw;
 	box-sizing: border-box; /* Ensure padding does not cause overflow */
 }
@@ -62,7 +61,7 @@
 	padding: 1rem; /* Internal padding instead of margin */
 	padding-left: 0;
 	padding-right: 0;
-	height: calc(100vh - 50px); /* Adjust height based on viewport */
+	height: 100%; /* Adjust height based on viewport */
 	width: 100vw;
 	box-sizing: border-box; /* Ensure padding does not cause overflow */
 }
@@ -80,17 +79,6 @@
 	height: 100%;
 	object-fit: cover;
 	transition: opacity 0.3s ease;
-}
-
-/* Dimming effect on hover for items that have a modal */
-.grid-item:not(.no-hover):hover img {
-	opacity: 0.7;
-}
-
-/* No dimming effect for items with the no-hover class */
-.grid-item.no-hover:hover img {
-	opacity: 1; /* Keep opacity at 1 to prevent dimming */
-	cursor: default;
 }
 
 /* Style for the title overlay in each grid item */
@@ -269,7 +257,6 @@
 .scrollable-container {
 	max-height: 50vh;
 	width: 100%;
-	overflow-y: auto;
 	overflow-x: hidden;
 	/* background-color: rgba(255, 255, 255, 0.1); */
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -351,27 +338,9 @@
 }
 
 @media (max-width: 960px) {
-	/* Container for the grid layout */
-	.past-projects-grid {
-		height: calc(100vh); /* Adjust height based on viewport */
-	}
-
-	/* Container for the grid layout */
-	.past-projects-grid-single {
-		height: calc(100vh); /* Adjust height based on viewport */
-	}
-
-	.past-projects-grid-square {
-		height: calc(100vh); /* Adjust height based on viewport */
-	}
-
-	.past-projects-grid-tri {
-		height: calc(100vh); /* Adjust height based on viewport */
-	}
-
 	.pastprojects-container {
-		height: calc(100vh - 100px);
-		width: 100%;
+		min-height: calc(100vh);
+		width: 100vw;
 		padding: 0;
 		margin: 0;
 		display: flex;

@@ -11,6 +11,8 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 
 	return (
 		<nav className="navbar-lower">
+			<div className="onerem-bar"></div>
+
 			<div className="navbarmobilecontainer">
 				{/* <div className="logospacer">
 					<div className="logocontainer">

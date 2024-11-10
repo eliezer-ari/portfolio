@@ -1,7 +1,7 @@
 /* Ensures the main container fills the viewport vertically */
 
 .page-container {
-	min-height: calc(100vh - 50px);
+	height: calc(100vh - 50px);
 	width: 100vw;
 	display: flex;
 	position: relative;
@@ -10,6 +10,14 @@
 	padding: 0 !important;
 	/* overflow-y: auto; */
 	overflow-x: hidden;
+}
+
+.onerem-bar {
+	display: flex;
+	position: relative;
+	height: 1rem;
+	background-color: #000;
+	width: 100vw;
 }
 
 .home-logo-container {
@@ -149,6 +157,17 @@
 	display: none;
 }
 
+.contact-parent {
+	height: 60%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
 @media (max-width: 960px) {
 	.page-container {
 		min-height: 100vh;
@@ -159,7 +178,6 @@
 		margin: 0;
 		padding: 0 !important;
 		/* overflow-x: hidden; */
-		overflow-y: auto;
 	}
 
 	.standard-container {

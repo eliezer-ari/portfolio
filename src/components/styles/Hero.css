@@ -82,7 +82,8 @@
 	.herocontainer .navreplacementmobile {
 		display: flex;
 		width: 100vw;
-		height: 100vh;
+		/* min-height: 100vh; */
+		flex-direction: column;
 		/* bottom: 1rem;
 		top: auto; */
 		position: relative;
@@ -109,17 +110,5 @@
 		background-size: 200% 200%; /* Large size to allow movement */
 		background-position: 20% 30%, 80% 70%, 50% 50%; /* Starting positions */
 		animation: floatingColors 5s ease-in-out infinite alternate;
-	}
-
-	@keyframes floatingColors {
-		0% {
-			background-position: 20% 30%, 80% 70%, 50% 50%;
-		}
-		50% {
-			background-position: 30% 40%, 70% 60%, 40% 80%;
-		}
-		100% {
-			background-position: 40% 20%, 60% 80%, 60% 30%;
-		}
 	}
 }
