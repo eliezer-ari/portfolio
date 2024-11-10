@@ -11,7 +11,7 @@ const Music = ({ setNextSection }) => {
 
 	return (
 		<>
-			<div className="standard-container">
+			<div className="music-container">
 				<div className="back-arrow-container">
 					<button
 						style={{ transform: "rotate(270deg) translateX(-8px)" }}
@@ -24,6 +24,9 @@ const Music = ({ setNextSection }) => {
 				<div className="player">
 					<AudioPlayer />
 				</div>
+			</div>
+			<div className="special-bar-container">
+				<div className="onerem-bar"></div>
 			</div>
 			<div className="contact-parent">
 				<Contact />
