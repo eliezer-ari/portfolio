@@ -3,7 +3,26 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	height: 100%;
+	width: 100vw;
+	background: radial-gradient(
+			circle at 20% 30%,
+			rgba(255, 0, 0, 0.4) 20%,
+			transparent 60%
+		),
+		radial-gradient(
+			circle at 80% 70%,
+			rgba(255, 255, 0, 0.4) 20%,
+			transparent 60%
+		),
+		radial-gradient(
+			circle at 50% 50%,
+			rgba(0, 0, 255, 0.6) 20%,
+			transparent 60%
+		);
+	background-size: 200% 200%; /* Large size to allow movement */
+	background-position: 20% 30%, 80% 70%, 50% 50%; /* Starting positions */
+	animation: floatingColors 5s ease-in-out infinite alternate;
 }
 
 .contact-container form {
@@ -31,6 +50,7 @@
 	padding: 0;
 	margin: 0;
 	padding-bottom: 1rem;
+	font-size: 1.5rem;
 }
 
 .contact-container input {
@@ -51,7 +71,7 @@
 .contact-container textarea {
 	width: 30rem;
 	max-width: 80vw;
-	height: 10rem;
+	height: 5rem;
 	padding-block: 0;
 	padding-inline: 0;
 	border-width: 0;
@@ -91,7 +111,11 @@
 	border-color: #fff;
 	border-image: none;
 	cursor: pointer;
-	color: #000;
+	color: #656565;
+}
+
+.contact-container button:hover {
+	color: #fff;
 }
 
 .contact-container button:active {

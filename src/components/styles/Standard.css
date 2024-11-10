@@ -9,9 +9,7 @@
 	margin: 0;
 	padding: 0 !important;
 	/* overflow-y: auto; */
-	/* overflow-x: hidden; */
-	scrollbar-width: thin;
-	scrollbar-color: transparent transparent;
+	overflow-x: hidden;
 }
 
 .home-logo-container {
@@ -44,12 +42,6 @@
 
 .page-container::-webkit-scrollbar-thumb {
 	background-color: transparent; /* Ensures scrollbar thumb is transparent */
-}
-
-/* Hide scrollbar on Firefox */
-.page-container {
-	scrollbar-width: thin; /* Minimal width */
-	scrollbar-color: transparent transparent; /* Thumb and track transparent */
 }
 
 /* Each section takes full viewport height and stacks vertically */
@@ -157,7 +149,7 @@
 	display: none;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 960px) {
 	.page-container {
 		min-height: 100vh;
 		width: 100vw;
@@ -168,8 +160,6 @@
 		padding: 0 !important;
 		/* overflow-x: hidden; */
 		overflow-y: auto;
-		scrollbar-width: thin;
-		scrollbar-color: transparent transparent;
 	}
 
 	.standard-container {
@@ -183,9 +173,6 @@
 		position: relative;
 		/* overflow: auto; */
 	}
-}
-
-@media (max-width: 960px) {
 	.home-logo-container {
 		display: flex;
 		position: absolute;

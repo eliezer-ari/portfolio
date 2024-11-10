@@ -92,30 +92,34 @@
 		bottom: 0;
 		transition: opacity 0.5s ease; /* Match this to the JS timeout */
 		background: radial-gradient(
-			ellipse,
-			rgba(46, 46, 46, 0.6) 30%,
-			#000000 100%
-		);
-		background-size: 150% 150%; /* Start larger to create zoom effect */
-		background-position: center;
-		animation: vignettePulse 9s ease-in-out infinite; /* Apply the animation */
+				circle at 20% 30%,
+				rgba(255, 0, 0, 0.4) 20%,
+				transparent 60%
+			),
+			radial-gradient(
+				circle at 80% 70%,
+				rgba(255, 255, 0, 0.4) 20%,
+				transparent 60%
+			),
+			radial-gradient(
+				circle at 50% 50%,
+				rgba(0, 0, 255, 0.6) 20%,
+				transparent 60%
+			);
+		background-size: 200% 200%; /* Large size to allow movement */
+		background-position: 20% 30%, 80% 70%, 50% 50%; /* Starting positions */
+		animation: floatingColors 5s ease-in-out infinite alternate;
 	}
 
-	@keyframes vignettePulse {
+	@keyframes floatingColors {
 		0% {
-			background-position: 50% 50%; /* Center */
-		}
-		25% {
-			background-position: 60% 40%; /* Slightly offset position */
+			background-position: 20% 30%, 80% 70%, 50% 50%;
 		}
 		50% {
-			background-position: 40% 60%; /* Offset to the other direction */
-		}
-		75% {
-			background-position: 50% 50%; /* Back to center */
+			background-position: 30% 40%, 70% 60%, 40% 80%;
 		}
 		100% {
-			background-position: 50% 50%; /* End at center */
+			background-position: 40% 20%, 60% 80%, 60% 30%;
 		}
 	}
 }

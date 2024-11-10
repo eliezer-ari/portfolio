@@ -67,11 +67,24 @@ body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
+	-webkit-text-size-adjust: 100%; /* Prevents automatic zooming */
 }
 
 /* Prevent layout shifting on Safari by setting fixed viewport heights */
 @supports (-webkit-touch-callout: none) {
 	.standard-container {
 		min-height: -webkit-fill-available; /* Helps with height issues on iOS */
+	}
+}
+
+@keyframes floatingColors {
+	0% {
+		background-position: 20% 30%, 80% 70%, 50% 50%;
+	}
+	50% {
+		background-position: 30% 40%, 70% 60%, 40% 80%;
+	}
+	100% {
+		background-position: 40% 20%, 60% 80%, 60% 30%;
 	}
 }

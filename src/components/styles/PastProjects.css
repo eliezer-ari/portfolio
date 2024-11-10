@@ -21,6 +21,8 @@
 	padding-left: 0;
 	padding-right: 0;
 	height: calc(100vh - 50px); /* Adjust height based on viewport */
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 	width: 100vw;
 	box-sizing: border-box; /* Ensure padding does not cause overflow */
 }
@@ -348,119 +350,25 @@
 	background: rgba(0, 0, 0, 0.1); /* Track color */
 }
 
-@media (max-width: 1500px) {
-	.pastprojects-container {
-		min-height: 100vh;
-		width: 100%;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		position: relative;
-		/* overflow: auto; */
+@media (max-width: 960px) {
+	/* Container for the grid layout */
+	.past-projects-grid {
+		height: calc(100vh); /* Adjust height based on viewport */
 	}
 
-	.past-projects-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr); /* Three equal columns */
-		grid-template-rows: auto;
-		grid-gap: 1rem; /* Space between grid items */
-		padding: 0rem; /* Internal padding instead of margin */
-		padding-left: 0;
-		padding-right: 0;
-		/* padding-bottom: 1rem; */
-		padding-top: 1rem;
+	/* Container for the grid layout */
+	.past-projects-grid-single {
 		height: calc(100vh); /* Adjust height based on viewport */
-		width: 100vw;
-		/* transform: translateY(1rem); */
-		box-sizing: border-box; /* Ensure padding does not cause overflow */
 	}
 
 	.past-projects-grid-square {
-		display: grid;
-		grid-template-columns: auto; /* Three equal columns */
-		grid-template-rows: repeat(2, 1fr);
-		grid-gap: 1rem; /* Space between grid items */
-		padding: 1rem; /* Internal padding instead of margin */
-		padding-left: 0;
-		padding-right: 0;
-		height: 100vh; /* Adjust height based on viewport */
-		width: 100vw;
-		box-sizing: border-box; /* Ensure padding does not cause overflow */
+		height: calc(100vh); /* Adjust height based on viewport */
 	}
 
 	.past-projects-grid-tri {
-		display: grid;
-		grid-template-columns: auto; /* Three equal columns */
-		grid-template-rows: repeat(3, 1fr);
-		grid-gap: 1rem; /* Space between grid items */
-		padding: 1rem; /* Internal padding instead of margin */
-		padding-left: 0;
-		padding-right: 0;
-		height: calc(100vh - 50px); /* Adjust height based on viewport */
-		width: 100vw;
-		box-sizing: border-box; /* Ensure padding does not cause overflow */
+		height: calc(100vh); /* Adjust height based on viewport */
 	}
 
-	/* Header styling within the project content */
-	.project-header {
-		display: flex;
-		flex-direction: column;
-		align-items: baseline;
-		gap: 4px;
-	}
-
-	.project-header h4 {
-		font-size: 1em;
-		font-weight: bold;
-		margin: 0;
-	}
-
-	.project-header h1 {
-		font-size: 1em;
-		font-weight: bold;
-		font-style: italic;
-		margin: 0;
-	}
-
-	.project-header h2 {
-		font-size: 1em;
-		/* font-style: italic; */
-		color: #cc32b2;
-		margin: 0;
-	}
-
-	.project-content {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-		color: #fff;
-		padding: 10px;
-		padding-left: 15px;
-		padding-right: 15px;
-		box-sizing: border-box;
-		font-size: 0.9em;
-		width: 100%;
-	}
-
-	/* Styling for the role and description */
-	.project-content h3 {
-		font-size: 0.85em;
-		font-weight: normal;
-		padding-top: 0.25rem;
-
-		margin: 0;
-	}
-
-	.project-content p {
-		font-size: 0.8em;
-		color: #ccc;
-	}
-}
-
-@media (max-width: 960px) {
 	.pastprojects-container {
 		height: calc(100vh - 100px);
 		width: 100%;
@@ -471,22 +379,6 @@
 		justify-content: flex-end; */
 		position: relative;
 		/* overflow: auto; */
-	}
-
-	.past-projects-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr); /* Three equal columns */
-		grid-template-rows: auto;
-		grid-gap: 1rem; /* Space between grid items */
-		padding: 0rem; /* Internal padding instead of margin */
-		padding-left: 0;
-		padding-right: 0;
-		/* padding-bottom: 1rem; */
-		padding-top: 1rem;
-		/* height: calc(100vh - 100px); */
-		width: 100vw;
-		/* transform: translateY(1rem); */
-		box-sizing: border-box; /* Ensure padding does not cause overflow */
 	}
 
 	.project-content {
