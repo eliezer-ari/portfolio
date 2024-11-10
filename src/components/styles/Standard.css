@@ -27,6 +27,7 @@
 	color: #ffffff;
 	text-wrap: balance;
 	text-align: center;
+	opacity: 0.7;
 }
 
 .onerem-bar {
@@ -260,7 +261,8 @@
 		position: absolute;
 		justify-content: center;
 		align-items: center;
-		/* top: 0; */
+		bottom: 0;
+		padding-bottom: 3rem;
 		z-index: 1000;
 	}
 
@@ -268,6 +270,7 @@
 		/* height: 3rem !important; */
 		/* padding-top: 3rem; */
 		width: 80vw;
+		opacity: 0.7;
 	}
 
 	.video-container-mobile {
