@@ -112,17 +112,18 @@ const Cinematography = ({ setNextSection }) => {
 		{
 			id: 1,
 			type: "large",
-			medium: "[Test Shoot]",
-			title: "Cracked: The Nutcracker with a Twist",
-			status: "In Post Production",
+			medium: "[Live Event]",
+			title: "Hotplate x Butter & Crumble Cake Picnic",
+			status: "",
 			role: "Camera Operator",
 			description: "",
-			image: Image5,
-			modalDescription: "Detailed description for Project 5.",
-			videoUrl: "https://www.youtube.com/embed/1-KjUlL71NQ?si=SrfXoLvctuvw2Flk",
-			hasModal: false,
+			image: Image2,
+			modalDescription: "Detailed description for Project 2.",
+			videoUrl: "https://player.vimeo.com/video/1028308992?h=ca71f5af0a",
+			hasModal: true,
 			isCarousel: false, // This project uses a video instead of a carousel
 		},
+
 		{
 			id: 2,
 			type: "small",
@@ -171,15 +172,15 @@ const Cinematography = ({ setNextSection }) => {
 		{
 			id: 5,
 			type: "large",
-			medium: "[Live Event]",
-			title: "Hotplate x Butter & Crumble Cake Picnic",
-			status: "In Post Production",
+			medium: "[Test Shoot]",
+			title: "Cracked: The Nutcracker with a Twist",
+			status: "",
 			role: "Camera Operator",
 			description: "",
-			image: Image2,
-			modalDescription: "Detailed description for Project 2.",
-			videoUrl: "https://www.youtube.com/embed/example1",
-			hasModal: false,
+			image: Image5,
+			modalDescription: "Detailed description for Project 5.",
+			videoUrl: "https://player.vimeo.com/video/1028419979?h=4c5eb26aea",
+			hasModal: true,
 			isCarousel: false, // This project uses a video instead of a carousel
 		},
 
@@ -241,9 +242,12 @@ const Cinematography = ({ setNextSection }) => {
 							<img src={project.image} alt={project.title} />
 							<div className="project-content">
 								<div className="project-header">
-									<h1>{project.title}</h1>
-									<h4>{project.medium}</h4>
-									{project.status && <h2>{project.status}</h2>}
+									<div className="project-header">
+										<h1>
+											{project.title} <h4>{project.medium}</h4>{" "}
+											{project.status && <h2>{project.status}</h2>}
+										</h1>
+									</div>
 								</div>
 								<h3>{project.role}</h3>
 							</div>

@@ -43,9 +43,7 @@ const WebDesign = ({ setNextSection }) => {
 							<img src={Still3} alt="" className="sitevideo" />
 						</Link>
 					</div>
-					<div className="website-copy">
-						<h1>Responsive websites coded in React JS.</h1>
-					</div>
+					<div className="website-copy"></div>
 				</div>
 			</div>
 			<div className="special-bar-container">

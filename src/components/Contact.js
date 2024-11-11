@@ -10,7 +10,7 @@ export default function Contact() {
 	return (
 		<div className="contact-container">
 			<div className="contact-content">
-				<h1>Let's chat!</h1>
+				<h1>Reach out now:</h1>
 				<form onSubmit={handleSubmit}>
 					<div className="email-section">
 						<input
