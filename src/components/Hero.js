@@ -17,22 +17,65 @@ export default function Hero() {
 
 	const handleSectionChange = (section) => {
 		if (section !== activeSection) {
+			console.log(`Starting transition from ${activeSection} to ${section}`);
+
 			setIsTransitioning(true);
 			const sectionContainer = document.querySelector(".section-container");
-			window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+			if (!sectionContainer) {
+				console.error("Section container not found!");
+				return;
+			}
+
+			console.log("Adding transitionend listener to section container...");
 
 			// Set up transitionend listener to update display after fade-out
 			const onTransitionEnd = () => {
+				console.log(
+					"Fade-out animation ended. Attempting to scroll to the top..."
+				);
+
+				console.log("Fade-out animation ended. Scrolling instantly...");
+				sectionContainer.scrollTop = 0; // Instantly scroll container to top
+				console.log(
+					"SectionContainer scrolled to:",
+					sectionContainer.scrollTop
+				);
+
+				window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+				console.log("Window scrolled to the top.");
+
+				console.log("Switching to the new section...");
 				setVisibleSection(section);
 				setActiveSection(section);
+
+				// Start fade-in animation
+				sectionContainer.classList.remove("fade-out");
+				sectionContainer.classList.add("fade-in");
+
+				// End the transition
+				console.log("Setting transition state to false...");
 				setIsTransitioning(false);
+
+				// Save the new section in sessionStorage
+				console.log(`Saving active section '${section}' to sessionStorage.`);
 				window.location.hash = section;
 				sessionStorage.setItem("lastActiveSection", section);
+
+				// Remove the event listener
 				sectionContainer.removeEventListener("transitionend", onTransitionEnd);
+				console.log("Removed transitionend listener.");
 			};
 
 			// Attach listener and initiate transition
 			sectionContainer.addEventListener("transitionend", onTransitionEnd);
+
+			// Start fade-out animation
+			console.log("Starting fade-out animation...");
+			sectionContainer.classList.add("fade-out");
+			sectionContainer.classList.remove("fade-in");
+		} else {
+			console.log(`Section '${section}' is already active. No action needed.`);
 		}
 	};
 

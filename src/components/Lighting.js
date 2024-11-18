@@ -65,9 +65,10 @@ const Lighting = ({ setNextSection }) => {
 				.catch((error) => {
 					console.error("Video playback failed:", error);
 				});
-		} else {
-			console.log("Video ref is not available.");
 		}
+		// else {
+		// 	console.log("Video ref is not available.");
+		// }
 	}, [isMobile]);
 
 	const handleBackToHome = () => {
@@ -221,10 +222,10 @@ const Lighting = ({ setNextSection }) => {
 					playsInline
 					preload="auto"
 					className={isMobile ? "video-background-mobile" : "video-background"}
-					onCanPlay={() => console.log("Video can play")}
-					onLoadedData={() => console.log("Video data loaded")}
-					onPlay={() => console.log("Video is playing")}
-					onError={(e) => console.error("Video error:", e)}
+					// onCanPlay={() => console.log("Video can play")}
+					// onLoadedData={() => console.log("Video data loaded")}
+					// onPlay={() => console.log("Video is playing")}
+					// onError={(e) => console.error("Video error:", e)}
 				/>
 				<button className="view-reel-button" onClick={handleViewReelClick}>
 					View Reel

@@ -23,6 +23,7 @@
 	min-height: calc(100vh - 50px);
 	height: calc(100vh - 50px);
 	transition: opacity 0.5s ease; /* Match this to the JS timeout */
+	overflow-y: auto;
 }
 /* @keyframes slideIn {
 	from {
