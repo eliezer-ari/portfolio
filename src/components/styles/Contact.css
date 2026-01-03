@@ -1,0 +1,155 @@
+.contact-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	padding-top: 6rem;
+	padding-bottom: 6rem;
+
+	background: radial-gradient(
+			circle at 20% 30%,
+			rgba(255, 187, 0, 0.4) 20%,
+			transparent 60%
+		),
+		radial-gradient(
+			circle at 80% 70%,
+			rgba(255, 0, 0, 0.4) 20%,
+			transparent 60%
+		),
+		radial-gradient(
+			circle at 50% 50%,
+			rgba(255, 0, 221, 0.6) 20%,
+			transparent 60%
+		);
+	background-size: 200% 200%; /* Large size to allow movement */
+	background-position: 20% 30%, 80% 70%, 50% 50%; /* Starting positions */
+	animation: floatingColors 5s ease-in-out infinite alternate;
+}
+
+.contact-content {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+}
+
+.contact-container form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.contact-container .email-section {
+	display: flex;
+	flex-direction: column;
+	/* gap: 10px; */
+	padding-bottom: 1rem;
+}
+
+.contact-container .message-section {
+	display: flex;
+	flex-direction: column;
+	/* gap: 10px; */
+	padding-bottom: 1rem;
+}
+
+.contact-container h1 {
+	width: 30rem; /* Match the width of the input fields */
+	max-width: 80vw; /* Match the responsive max-width of the inputs */
+	text-align: left; /* Center the text within the h1 */
+	margin: 0;
+	padding-bottom: 1rem;
+	font-size: 1.5rem;
+}
+
+.contact-container input {
+	width: 30rem;
+	max-width: 80vw;
+	height: 2rem;
+	padding-block: 0;
+	padding-inline: 0;
+	border-width: 0;
+	border-style: none;
+	border-color: #fff;
+	border-image: none;
+	-webkit-appearance: none; /* Removes default styling on iOS */
+	box-shadow: none; /* Removes inner shadow */
+	border-radius: 0;
+	padding-left: 1rem;
+	padding-top: 0.3rem;
+	padding-bottom: 0.3rem;
+	-webkit-text-size-adjust: 100%; /* Prevents automatic zoom on iOS */
+	font-size: 16px;
+	outline: none; /* Removes the default focus outline */
+}
+
+.contact-container textarea {
+	width: 30rem;
+	max-width: 80vw;
+	height: 5rem;
+	padding-block: 0;
+	padding-inline: 0;
+	border-width: 0;
+	border-style: none;
+	border-color: #fff;
+	border-image: none;
+	-webkit-appearance: none; /* Removes default styling on iOS */
+	box-shadow: none; /* Removes inner shadow */
+	border-radius: 0;
+	padding-left: 1rem;
+	padding-top: 0.8rem;
+	padding-bottom: 0.3rem;
+	-webkit-text-size-adjust: 100%; /* Prevents automatic zoom on iOS */
+	font-size: 16px;
+	resize: none; /* Disables resizing */
+	overflow: auto; /* Allows scroll if content overflows */
+	outline: none; /* Removes the default focus outline */
+}
+
+.contact-container input:placeholder-shown {
+	font-family: "Sen", sans-serif;
+}
+
+.contact-container textarea:placeholder-shown {
+	font-family: "Sen", sans-serif;
+}
+
+.contact-container button {
+	width: 30rem;
+	max-width: 80vw;
+	height: 2rem;
+	font-family: "Sen", sans-serif;
+	border-radius: 0;
+	background-color: #fff;
+	padding-block: 0;
+	padding-inline: 0;
+	border-width: 0;
+	border-style: none;
+	border-color: #fff;
+	border-image: none;
+	cursor: pointer;
+	color: #656565;
+	outline: none; /* Removes the default focus outline */
+}
+
+.contact-container button:hover {
+	color: #fff;
+}
+
+.contact-container button:active {
+	background-color: #a3a3a3;
+	color: #000;
+	transition: ease-in-out 50ms;
+}
+
+@media (max-width: 960px) {
+	.contact-container {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+}

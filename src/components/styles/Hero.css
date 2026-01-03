@@ -1,0 +1,118 @@
+/* Hero.css */
+
+.herocontainer {
+	position: relative;
+	width: 100vw;
+	min-height: calc(100vh - 50px);
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	/* overflow-y: auto;
+	overflow-x: hidden; */
+	background-color: #000; /* Neutral background */
+}
+
+.section-container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	padding: 0;
+	margin: 0;
+	width: 100vw;
+	min-height: calc(100vh - 50px);
+	height: calc(100vh - 50px);
+	transition: opacity 0.5s ease; /* Match this to the JS timeout */
+	overflow-y: auto;
+}
+/* @keyframes slideIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+} */
+
+.fade-in {
+	opacity: 1;
+}
+
+.fade-out {
+	opacity: 0;
+}
+
+.herocontainer .navreplacement {
+	display: flex;
+	width: 100vw;
+	height: 50px;
+	bottom: 0;
+	position: fixed;
+	z-index: 1099;
+}
+
+.herocontainer .navreplacementmobile {
+	display: none;
+}
+
+@media screen and (max-width: 960px) {
+	.herocontainer {
+		width: 100vw;
+		/* min-height: calc(
+			var(--vh, 1vh) * 100
+		);  */
+		min-height: 100vh;
+	}
+
+	.section-container {
+		width: 100vw;
+
+		height: auto;
+	}
+
+	.herocontainer .navreplacement {
+		display: none;
+	}
+
+	.herocontainer .navreplacementmobile {
+		display: flex;
+		width: 100vw;
+		/* min-height: 100vh; */
+		flex-direction: column;
+		/* bottom: 1rem;
+		top: auto; */
+		position: relative;
+		z-index: 1099;
+		justify-content: center;
+		align-items: center;
+		bottom: 0;
+		transition: opacity 0.5s ease; /* Match this to the JS timeout */
+		background: radial-gradient(
+				circle at 20% 30%,
+				rgba(255, 0, 0, 0.4) 20%,
+				transparent 60%
+			),
+			radial-gradient(
+				circle at 80% 70%,
+				rgba(255, 255, 0, 0.4) 20%,
+				transparent 60%
+			),
+			radial-gradient(
+				circle at 50% 50%,
+				rgba(0, 0, 255, 0.6) 20%,
+				transparent 60%
+			);
+		background-size: 200% 200%; /* Large size to allow movement */
+		background-position: 20% 30%, 80% 70%, 50% 50%; /* Starting positions */
+		animation: floatingColors 5s ease-in-out infinite alternate;
+	}
+}

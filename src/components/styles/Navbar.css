@@ -1,0 +1,232 @@
+/* Navbar.css */
+
+/* Make Navbar transparent & part of page */
+.navbar {
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 50px;
+	display: flex;
+	flex-direction: row;
+	background-color: #000;
+	margin-left: auto;
+	margin-right: auto;
+	position: sticky;
+	bottom: 0;
+	z-index: 1199;
+}
+
+.logosvg {
+	fill: #ffffff; /* Set the color to white */
+	width: 100%; /* Makes it responsive */
+	height: 1.25rem; /* Keeps aspect ratio */
+}
+
+/* pushes logo to the left */
+.logospacer {
+	display: flex;
+	align-items: center;
+	padding-left: 2rem;
+	flex-grow: 1;
+	z-index: 1299;
+}
+
+.logocontainer {
+	display: block;
+	/* position: relative; */
+	justify-content: center;
+	align-items: center;
+	z-index: 1299;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.navbarlogoparent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+/* Logo Styling */
+.navbarlogo {
+	padding: 0.1rem;
+	height: 1.75rem;
+	width: auto;
+	max-width: 100%;
+	display: flex;
+	cursor: pointer;
+	filter: none;
+	transition: all 0.25s ease;
+}
+
+.navbarcontainer {
+	display: flex;
+	align-items: center;
+	padding: 0 1.5rem; /* Adds space on both sides */
+	z-index: 1299;
+	-ms-overflow-style: none; /* IE 10+ */
+	scrollbar-width: none; /* Firefox */
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.navbarcontainer::-webkit-scrollbar {
+	display: none; /* Hides scrollbar in WebKit browsers */
+}
+
+.navmenu {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	z-index: 1299;
+	width: max-content; /* Prevents menu from stretching */
+}
+
+.navitem {
+	margin: 0 0.5rem;
+	z-index: 1299;
+}
+
+.navlinks {
+	display: flex;
+	cursor: pointer;
+	height: 1.75rem;
+	position: relative;
+	text-decoration: none;
+	transition: all 0.5s ease-out;
+	color: #fff;
+	letter-spacing: 0.1rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 0.7rem;
+	padding: 0 1rem;
+	border: none;
+	background-color: rgba(255, 255, 255, 0.1);
+	justify-content: center;
+	align-items: center;
+	z-index: 1299;
+}
+.navlinks:hover {
+	background-color: rgba(255, 255, 255, 0.3);
+	color: #fff;
+}
+
+.navlinks.active {
+	background-color: rgba(255, 255, 255, 0.3); /* Highlight background */
+	color: #fff; /* Change color for active link */
+}
+
+.navlinkspecial {
+	display: flex;
+	flex-direction: row;
+	cursor: pointer;
+	height: 1.75rem;
+	position: relative;
+	text-decoration: none;
+	transition: all 0.5s ease-out;
+	color: transparent;
+	letter-spacing: 0.1rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 0.7rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	border: none;
+	background-color: transparent;
+	justify-content: center;
+	align-items: center;
+	z-index: 1399;
+}
+
+/* Mobile-specific styles */
+@media screen and (max-width: 960px) {
+	.navbar {
+		flex-direction: column;
+		height: auto;
+		padding: 0;
+		background-color: transparent;
+		justify-content: center;
+		align-items: center;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+	}
+
+	.navbarlogo {
+		height: 2rem;
+		width: auto;
+		max-width: 100%;
+		display: block;
+	}
+
+	.navbarcontainer {
+		width: 100vw;
+		padding: 0 1.5rem; /* Adds padding to both sides for mobile */
+		padding-top: 0.5rem;
+		display: none; /**fuck this shit**/
+	}
+
+	.navbar-lower {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		/* max-height: 100vh; */
+		width: 100vw;
+		padding: 0;
+		background-color: transparent;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.navbarmobilecontainer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		z-index: 9000;
+		height: 100vh !important;
+		width: 100vw;
+	}
+
+	.navbarmobilecontainer .logospacer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-left: 0;
+		padding-top: 1.8rem;
+	}
+
+	.navbarmobilecontainer .navbarlogo {
+		height: 2.5rem;
+	}
+
+	/* Styles for each nav item within the mobile menu */
+	.navbarmobilecontainer .navmenu {
+		display: flex;
+		flex-direction: column;
+		height: 80vh;
+		gap: 0;
+		align-items: center;
+		justify-content: space-around;
+		padding: 1rem;
+	}
+
+	.navbarmobilecontainer .navitem {
+		margin: 0;
+	}
+
+	.navbarmobilecontainer .navlinks {
+		font-size: 1.2rem;
+		font-weight: 200;
+		letter-spacing: 0.3rem;
+		color: white;
+		padding: 1rem;
+		white-space: nowrap;
+		width: 90vw;
+		height: auto;
+		background-color: transparent;
+		text-align: left;
+	}
+
+	.navbarmobilecontainer::-webkit-scrollbar {
+		display: none; /* Hides scrollbar in WebKit browsers */
+	}
+}
