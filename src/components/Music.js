@@ -1,36 +1,30 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import "./styles/Standard.css";
 import AudioPlayer from "./AudioPlayer";
 import Contact from "./Contact";
 
-const Music = ({ setNextSection }) => {
-	// Function to handle back to home navigation with animation
-	const handleBackToHome = () => {
-		setNextSection("Home"); // Set nextSection to "Home" to trigger the animation
-	};
+const Variation22 = "https://portfoliomusic.s3.us-east-1.amazonaws.com/variation+2.2+2026-01-29+1707.flac";
 
+const Music = ({ setNextSection, activeSection }) => {
 	return (
 		<>
 			<div className="music-container">
 				<div className="back-arrow-container">
-					<button
-						style={{ transform: "rotate(270deg) translateX(-8px)" }}
-						className="arrow-button"
-						onClick={handleBackToHome}
-					>
-						&#x2303;
-					</button>
 				</div>
 				<div className="player">
-					<AudioPlayer />
+					<AudioPlayer 
+						src={Variation22}
+						title="Variation 2.2"
+						artist="ARIANA ROSEMAN"
+					/>
 				</div>
 			</div>
-			<div className="special-bar-container">
+			{/* <div className="special-bar-container">
 				<div className="onerem-bar"></div>
-			</div>
-			<div className="contact-parent">
+			</div> */}
+			{/* <div className="contact-parent">
 				<Contact />
-			</div>
+			</div> */}
 		</>
 	);
 };

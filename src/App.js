@@ -4,7 +4,6 @@ import "./App.css";
 import Home from "./components/pages/Home.js";
 
 import { Amplify } from "aws-amplify";
-import { Storage } from "@aws-amplify/storage";
 import awsconfig from "./aws-exports";
 
 Amplify.configure(awsconfig);

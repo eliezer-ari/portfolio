@@ -49,9 +49,9 @@ const WebDesign = ({ setNextSection }) => {
 			<div className="special-bar-container">
 				<div className="onerem-bar"></div>
 			</div>
-			<div className="contact-parent">
+			{/* <div className="contact-parent">
 				<Contact />
-			</div>
+			</div> */}
 		</>
 	);
 };

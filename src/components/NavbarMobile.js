@@ -20,6 +20,30 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 					</div>
 				</div> */}
 				<ul className="navmenu">
+				<li className="navitem">
+						<button
+							className="navlinks"
+							onClick={() => handleLinkClick("Home")}
+						>
+							Home
+						</button>
+					</li>
+				<li className="navitem">
+						<button
+							className="navlinks"
+							onClick={() => handleLinkClick("Music")}
+						>
+							Original Music
+						</button>
+					</li>
+					<li className="navitem">
+						<button
+							className="navlinks"
+							onClick={() => handleLinkClick("DJMixes")}
+						>
+							DJ Mixes
+						</button>
+					</li>
 					<li className="navitem">
 						<button
 							className="navlinks"
@@ -28,15 +52,15 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 							Lighting
 						</button>
 					</li>
-					<li className="navitem">
+					{/* <li className="navitem">
 						<button
 							className="navlinks"
 							onClick={() => handleLinkClick("Cinematography")}
 						>
 							Cinematography
 						</button>
-					</li>
-					<li className="navitem">
+					</li> */}
+					{/* <li className="navitem">
 						<button className="navlinks" onClick={() => handleLinkClick("VFX")}>
 							VFX
 						</button>
@@ -48,23 +72,16 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 						>
 							Graphics
 						</button>
-					</li>
-					<li className="navitem">
+					</li> */}
+					{/* <li className="navitem">
 						<button
 							className="navlinks"
 							onClick={() => handleLinkClick("WebDesign")}
 						>
 							Web Design
 						</button>
-					</li>
-					<li className="navitem">
-						<button
-							className="navlinks"
-							onClick={() => handleLinkClick("Music")}
-						>
-							Music
-						</button>
-					</li>
+					</li> */}
+					
 				</ul>
 			</div>
 		</nav>

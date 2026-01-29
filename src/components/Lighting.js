@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 // Import images for each project
 import Image1 from "./images/popmstill3.jpg";
-import Image2 from "./images/swdjstill.png";
+import Image2 from "./images/gumgumstill.jpg";
 import Image3 from "./images/laufeystill.png";
 import Image4 from "./images/gentlemenstill.png";
 import Image5 from "./images/futurestill.png";
@@ -17,7 +17,7 @@ import CarouselImage1 from "./images/popmstill1.jpg";
 import CarouselImage2 from "./images/popmstill2.jpg";
 import CarouselImage3 from "./images/popmstill3.jpg";
 
-const Lighting = ({ setNextSection }) => {
+const Lighting = ({ setNextSection, activeSection }) => {
 	const videoUrl =
 		"https://portfolio-videos-current.s3.us-east-1.amazonaws.com/lightingloop.mp4";
 	const mobileVideoUrl =
@@ -115,13 +115,13 @@ const Lighting = ({ setNextSection }) => {
 		{
 			id: 1,
 			type: "large",
-			medium: "[Feature Film]",
-			title: "Lloyd Kaufman’s The Power of Positive Murder",
+			medium: "[Live Events]",
+			title: "Studio GumGum",
 			status: "",
-			role: "Lighting Technician (Grip & Electric)",
+			role: "Lighting Technician",
 			description:
-				"Created lighting setups for a noir film under tight deadlines.",
-			image: Image1,
+				"Creates and operates lighting setups for clubs and live events.",
+			image: Image2,
 			modalDescription: "Detailed description for Project 1 ...",
 			videoUrl: "https://www.youtube.com/embed/example1",
 			hasModal: true,
@@ -131,16 +131,17 @@ const Lighting = ({ setNextSection }) => {
 		{
 			id: 2,
 			type: "small",
-			medium: "[Event Space]",
-			title: "Support Women DJs Studio",
-			status: "In Progress",
-			role: "Chief Lighting Technician",
+			medium: "[Feature Film]",
+			title: "Lloyd Kaufman’s The Power of Positive Murder",
+			status: "",
+			role: "Lighting Technician (Grip & Electric)",
 			description: "",
-			image: Image2,
+			image: Image1,
 			modalDescription: "Detailed description for Project 2.",
 			videoUrl: "https://www.youtube.com/embed/example1",
-			hasModal: false,
-			isCarousel: false, // This project uses a video instead of a carousel
+			hasModal: true,
+			isCarousel: true, // This project uses a carousel instead of a video
+			carouselImages: [CarouselImage1, CarouselImage2, CarouselImage3],
 		},
 		{
 			id: 3,
@@ -204,15 +205,7 @@ const Lighting = ({ setNextSection }) => {
 	return (
 		<>
 			<div className="standard-container">
-				<div className="back-arrow-container">
-					<button
-						style={{ transform: "rotate(270deg) translateX(-8px)" }}
-						className="arrow-button"
-						onClick={handleBackToHome}
-					>
-						&#x2303;
-					</button>
-				</div>
+		
 				<video
 					ref={desktopVideoRef}
 					src={isMobile ? mobileVideoUrl : videoUrl}
@@ -649,9 +642,9 @@ const Lighting = ({ setNextSection }) => {
 					)}
 				</div>
 			</div>
-			<div className="contact-parent">
+			{/* <div className="contact-parent">
 				<Contact />
-			</div>
+			</div> */}
 		</>
 	);
 };

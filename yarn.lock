@@ -1733,6 +1733,11 @@
     "@babel/helper-validator-option" "^7.18.6"
     "@babel/plugin-transform-typescript" "^7.18.6"
 
+"@babel/runtime@^7.10.2":
+  version "7.28.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.28.6.tgz#d267a43cb1836dc4d182cce93ae75ba954ef6d2b"
+  integrity sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==
+
 "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.16.3", "@babel/runtime@^7.20.7", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.26.0"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.26.0.tgz"
@@ -1955,6 +1960,18 @@
   version "1.2.1"
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
+
+"@iconify/react@^5":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@iconify/react/-/react-5.2.1.tgz#62688343aa619c1ec3378730f41d57af53d664e6"
+  integrity sha512-37GDR3fYDZmnmUn9RagyaX+zca24jfVOMY8E1IXTqJuE8pxNtN51KWPQe3VODOWvuUurq7q9uUu3CFrpqj5Iqg==
+  dependencies:
+    "@iconify/types" "^2.0.0"
+
+"@iconify/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
+  integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -9426,6 +9443,14 @@ react-fast-compare@^2.0.1:
   version "2.0.4"
   resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-2.0.4.tgz"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
+react-h5-audio-player@^3.10.1:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/react-h5-audio-player/-/react-h5-audio-player-3.10.1.tgz#a4d4e39633b2df1567a576faef69a4f949b43350"
+  integrity sha512-r6fSj9WXR6af1kxH5qQ/tawwDK4KrMfayiVCUettLYGX/KZ3BH8OGuaZP4O5KD0AxwsKAXtBv4kVQCWFzaIrUA==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
+    "@iconify/react" "^5"
 
 react-hook-form@^7.43.5:
   version "7.53.1"

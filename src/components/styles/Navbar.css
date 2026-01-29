@@ -124,13 +124,15 @@
 	position: relative;
 	text-decoration: none;
 	transition: all 0.5s ease-out;
-	color: transparent;
+	color: #ffffff;
 	letter-spacing: 0.1rem;
 	text-transform: uppercase;
-	font-weight: 600;
-	font-size: 0.7rem;
+	font-family: "BeauBold", sans-serif;
+	font-weight: normal;
+	font-size: 1.75rem;
 	padding-left: 1rem;
 	padding-right: 1rem;
+	padding-top: 4px;
 	border: none;
 	background-color: transparent;
 	justify-content: center;

@@ -2,20 +2,26 @@ import React, { useState, useEffect } from "react";
 import "./styles/Hero.css";
 import Navbar from "./Navbar.js";
 import NavbarMobile from "./NavbarMobile.js";
+import NavbarMobileHome from "./NavbarMobileHome.js";
 import WebDesign from "./WebDesign.js";
 import VFX from "./VFX.js";
 import Lighting from "./Lighting.js";
 import Music from "./Music.js";
+import DJMixes from "./DJMixes.js";
 import Graphics from "./Graphics.js";
-import Cinematography from "./Cinematography.js";
+// import Cinematography from "./Cinematography.js";
 import Home from "./Home.js";
 
 export default function Hero() {
 	const [activeSection, setActiveSection] = useState("Home");
 	const [isTransitioning, setIsTransitioning] = useState(false);
 	const [visibleSection, setVisibleSection] = useState("Home");
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const handleSectionChange = (section) => {
+		// Close menu when section changes
+		setIsMenuOpen(false);
+		
 		if (section !== activeSection) {
 			console.log(`Starting transition from ${activeSection} to ${section}`);
 
@@ -84,6 +90,15 @@ export default function Hero() {
 		handleSectionChange(section);
 	};
 
+	const handleMenuToggle = () => {
+		setIsMenuOpen(!isMenuOpen);
+	};
+
+	const handleSectionChangeFromMenu = (section) => {
+		setIsMenuOpen(false); // Close menu when a section is selected
+		handleSectionChange(section);
+	};
+
 	const [isNavMobileVisible, setIsNavMobileVisible] = useState(true);
 
 	// Manage visibility of the mobile nav
@@ -115,19 +130,21 @@ export default function Hero() {
 
 	const renderSection = () => {
 		switch (activeSection) {
-			case "Cinematography":
-				return <Cinematography setNextSection={setNextSection} />;
+			// case "Cinematography":
+			// 	return <Cinematography setNextSection={setNextSection} />;
 
 			case "Lighting":
-				return <Lighting setNextSection={setNextSection} />; // Pass setNextSection
-			case "VFX":
-				return <VFX setNextSection={setNextSection} />;
-			case "Graphics":
-				return <Graphics setNextSection={setNextSection} />;
-			case "WebDesign":
-				return <WebDesign setNextSection={setNextSection} />;
+				return <Lighting setNextSection={setNextSection} activeSection={activeSection} />; // Pass setNextSection
+			// case "VFX":
+			// 	return <VFX setNextSection={setNextSection} />;
+			// case "Graphics":
+			// 	return <Graphics setNextSection={setNextSection} />;
+			// case "WebDesign":
+			// 	return <WebDesign setNextSection={setNextSection} />;
 			case "Music":
-				return <Music setNextSection={setNextSection} />;
+				return <Music setNextSection={setNextSection} activeSection={activeSection} />;
+				case "DJMixes":
+				return <DJMixes setNextSection={setNextSection} activeSection={activeSection} />;
 			default:
 				return <Home />;
 		}
@@ -135,6 +152,18 @@ export default function Hero() {
 
 	return (
 		<div id="hero" className="herocontainer">
+			<button
+				className="hamburger-button"
+				onClick={(e) => {
+					e.stopPropagation();
+					handleMenuToggle();
+				}}
+				aria-label="Toggle menu"
+			>
+				<span className={`hamburger-line ${isMenuOpen ? "open" : ""}`}></span>
+				<span className={`hamburger-line ${isMenuOpen ? "open" : ""}`}></span>
+				<span className={`hamburger-line ${isMenuOpen ? "open" : ""}`}></span>
+			</button>
 			<div id="page-container" className="page-container">
 				<div
 					className={`section-container ${
@@ -156,10 +185,16 @@ export default function Hero() {
 						activeSection === "Home" ? "fade-in" : "fade-out"
 					}`}
 				>
-					<NavbarMobile
-						setActiveSection={handleSectionChange}
-						activeSection={activeSection}
-					/>
+				</div>
+			)}
+			{isMenuOpen && (
+				<div className="navbar-overlay" onClick={handleMenuToggle}>
+					<div className="navbar-overlay-content" onClick={(e) => e.stopPropagation()}>
+						<NavbarMobile
+							setActiveSection={handleSectionChangeFromMenu}
+							activeSection={activeSection}
+						/>
+					</div>
 				</div>
 			)}
 		</div>

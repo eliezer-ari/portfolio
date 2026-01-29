@@ -1,0 +1,383 @@
+/* AudioPlayer.css */
+
+.audioplayercontainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	width: 100%;
+	height: 100%;
+	transform: translateY(calc(-50px));
+	background-color: rgba(255, 255, 255, 0.05) !important;
+		box-shadow: none !important;
+		/* padding: 1rem !important; */
+		/* border-radius: 12px !important; */
+		border: 1px solid rgba(255, 255, 255, 0.1) !important;
+		backdrop-filter: blur(10px);
+	/* padding: 10px; */
+}
+
+@media (max-width: 960px) {
+	.audioplayercontainer {
+		width: 90vw;
+		padding: 10px 10px 10px 8px;
+	}
+}
+
+/* Desktop: Position in bottom right corner */
+@media (min-width: 961px) {
+	.audioplayercontainer {
+		
+		position: relative;
+		width: 50vw;
+		height: auto;
+		z-index: 1000;
+		
+		gap: 12px;
+		transform: translateY(calc(-50px));
+	}
+
+	.audioplayercontainer .album-art {
+		aspect-ratio: 1 / 1;
+		align-self: stretch;
+		width: auto;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		max-width: 100px;
+		max-height: 100px;
+		min-width: 100px;
+		flex-shrink: 0;
+	}
+
+	.audioplayercontainer .audio-player-wrapper {
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+		flex: 1;
+	}
+
+	.audioplayercontainer .rhap_container {
+		padding: 6px 11px 0 9px !important;
+	}
+
+	.audioplayercontainer .rhap_progress-section {
+		margin: 10px 0 10px 0 !important;
+	}
+
+	.audioplayercontainer .rhap_main-controls-button {
+		font-size: 32px !important;
+		width: 40px !important;
+		height: 40px !important;
+	}
+
+	.audioplayercontainer .track-info-inline {
+		/* padding: 0 0.75rem !important; */
+		min-width: 0;
+	}
+
+	.audioplayercontainer .track-title {
+		font-size: 0.95rem !important;
+		font-weight: 600 !important;
+	}
+
+	.audioplayercontainer .track-artist {
+		font-size: 0.8rem !important;
+	}
+
+	.audioplayercontainer .rhap_time {
+		font-size: 0.8rem !important;
+		margin-bottom: 2px !important;
+	}
+}
+
+.album-art {
+display: none;
+}
+
+.album-art img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 960px) {
+	.audioplayercontainer {
+		flex-direction: column;
+		position: relative;
+	}
+
+	.album-art {
+		width: 90vw;
+		max-width: 800px;
+		height: auto;
+		align-self: center;
+	}
+
+	.audio-player-wrapper {
+		width: 90vw;
+		max-width: 800px;
+	}
+}
+/* Custom audio player container */
+.rhap_container {
+	background-color: transparent !important;
+	box-shadow: none !important;
+	padding: 0 5px !important;
+	/* border-radius: 12px !important; */
+	border: none !important;
+	box-sizing: border-box !important;
+	overflow: visible !important;
+}
+
+/* Ensure all sections respect padding */
+.rhap_container > * {
+	box-sizing: border-box !important;
+}
+
+/* Progress bar container */
+.rhap_progress-section {
+	margin: 10px 0px 5px 0 !important;
+}
+
+.rhap_progress-container {
+	background-color: rgba(255, 255, 255, 0.2) !important;
+	/* border-radius: 4px !important; */
+	height: 6px !important;
+	cursor: pointer !important;
+	overflow: hidden !important; /* Clip any overflow */
+	position: relative !important;
+	margin: 0 calc(1%) !important;
+}
+
+.rhap_progress-bar {
+	background-color: rgba(255, 255, 255, 0.3) !important;
+	/* border-radius: 4px !important;	 */
+	height: 6px !important;
+	overflow: hidden !important; /* Prevent any overflow artifacts */
+}
+
+.rhap_progress-filled {
+	background-color: #ffffff !important; /* Played section */
+	height: 6px !important;
+}
+
+.rhap_progress-indicator {
+	background-color: #ffffff !important;
+	width: 4px !important; /* Thin bar width */
+	height: 6px !important; /* Match progress bar height */
+	margin-left: -2px !important; /* Center the bar */
+	top: 0 !important; /* Align with progress bar */
+	box-shadow: none !important; /* Remove circular shadow */
+	border-radius: 0 !important; /* Make it a bar, not a circle */
+	display: block !important; /* Ensure it's visible */
+	visibility: visible !important; /* Ensure it's visible */
+	z-index: 10 !important; /* Make sure it's on top */
+}
+
+/* Main controls container */
+.rhap_main-controls {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+/* Play/pause button */
+.rhap_main-controls-button {
+	color: #ffffff !important;
+	font-size: 40px !important;
+	width: 50px !important;
+	height: 50px !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+	margin: none !important;
+}
+
+.rhap_main-controls-button:hover {
+	color: #ffffff !important;
+	opacity: 1 !important;
+	/* transform: scale(1.1); */
+	transition: all 0.2s ease;
+	filter: brightness(1.3) !important;
+}
+
+/* Previous/Next buttons */
+.rhap_button-clear {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.rhap_button-clear:hover {
+	color: #ffffff !important;
+}
+
+/* Time display */
+.rhap_time {
+	color: rgba(255, 255, 255, 0.8) !important;
+	font-family: "Sen", sans-serif !important;
+	font-size: 0.9rem !important;
+}
+
+/* Track info inline between controls */
+.track-info-inline {
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	flex: 1 !important;
+	min-width: 0 !important; /* Allows text truncation */
+	max-width: 100% !important;
+	padding: 0.25rem 0 !important; /* Add vertical padding to prevent cropping */
+	transition: opacity 0.2s ease-in-out !important;
+}
+
+.track-info-inline.fade-out {
+	opacity: 0 !important;
+}
+
+.track-info-inline.fade-in {
+	opacity: 1 !important;
+}
+
+.track-title,
+.track-artist {
+	transition: opacity 0.2s ease-in-out !important;
+}
+
+/* Controls section - ensure horizontal layout */
+.rhap_controls-section {
+	display: flex !important;
+	flex-direction: row !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+	gap: 0rem !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+	margin-bottom: 0 !important;
+}
+
+/* Volume controls */
+.rhap_volume-container {
+	color: rgba(255, 255, 255, 0.8) !important;
+	flex-shrink: 0 !important;
+	display: flex !important;
+	align-items: center !important;
+	gap: 0 !important; /* No gap needed since volume bar is hidden */
+	box-sizing: border-box !important;
+	/* margin-right: 5px; */
+}
+
+.rhap_volume-button {
+	color: rgba(255, 255, 255, 0.8) !important;
+	font-size: 20px !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	flex-shrink: 0 !important;
+}
+
+.rhap_volume-button:hover {
+	color: #ffffff !important;
+}
+
+.rhap_volume-controls {
+	display: flex !important;
+	align-items: center !important;
+	/* flex-shrink: 0 !important; */
+	justify-content: flex-start !important;
+	box-sizing: border-box !important;
+}
+
+.rhap_volume-bar-area {
+	display: none !important; /* Hide volume bar, keep mute button */
+}
+
+.rhap_volume-bar {
+	background-color: rgba(255, 255, 255, 0.4) !important;
+	/* border-radius: 4px !important; */
+}
+
+.rhap_volume-indicator {
+	background-color: #ffffff !important;
+	width: 12px !important;
+	height: 12px !important;
+	margin-left: -6px !important;
+	top: -4px !important;
+	box-sizing: border-box !important;
+}
+
+/* Ensure volume container stays within bounds */
+.rhap_container .rhap_volume-container {
+	max-width: calc(100% - 0px) !important;
+}
+
+/* Track list scrollbar styling */
+.track-list-container::-webkit-scrollbar {
+	width: 8px;
+}
+
+.track-list-container::-webkit-scrollbar-track {
+	background: rgba(255, 255, 255, 0.05);
+	/* border-radius: 4px; */
+}
+
+.track-list-container::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.2);
+	/* border-radius: 4px; */
+}
+
+.track-list-container::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+/* Track item hover effect */
+.track-item:hover {
+	background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.track-item.active:hover {
+	background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 960px) {
+
+
+	.rhap_main-controls-button {
+		font-size: 35px !important;
+		width: 45px !important;
+		height: 45px !important;
+	}
+
+	.rhap_time {
+		font-size: 0.85rem !important;
+		color: rgba(255, 255, 255, 0.9) !important;
+		font-weight: 500 !important;
+	}
+
+	.rhap_volume-button {
+		font-size: 18px !important;
+	}
+
+	.track-info-inline {
+		/* padding: 0.5rem 0 !important; */
+	}
+
+	.track-title {
+		font-size: 1rem !important;
+		font-weight: 600 !important;
+		color: #ffffff !important;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+	}
+
+	.track-artist {
+		font-size: 0.7rem !important;
+		color: rgba(255, 255, 255, 0.9) !important;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+		opacity: 0.85 !important;
+	}
+
+}
+
