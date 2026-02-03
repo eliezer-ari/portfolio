@@ -129,8 +129,8 @@
 	text-transform: uppercase;
 	font-weight: normal;
 	font-size: 1.75rem;
-	padding-left: 1rem;
 	padding-right: 1rem;
+	padding-left: 0;
 	border: none;
 	background-color: transparent;
 	justify-content: center;
