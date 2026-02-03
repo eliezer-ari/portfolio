@@ -20,7 +20,7 @@
 @media (max-width: 960px) {
 	.audioplayercontainer {
 		width: 90vw;
-		padding: 10px 10px 10px 8px;
+		margin: 10px;
 	}
 }
 
@@ -124,7 +124,7 @@ display: none;
 .rhap_container {
 	background-color: #0000005e !important;
 	box-shadow: none !important;
-	padding: 0 5px !important;
+	padding: 7px 7px !important;
 	/* border-radius: 12px !important; */
 	border: none !important;
 	box-sizing: border-box !important;
