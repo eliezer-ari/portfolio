@@ -3,8 +3,8 @@ import "./styles/Standard.css";
 import AudioPlayer from "./AudioPlayer";
 import Contact from "./Contact";
 
-const InTheMomentFLAC = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-02+2350.flac";
-const InTheMomentMP3 = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-02+2350.wav";
+const InTheMomentFLAC = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-03+0118.flac";
+const InTheMomentMP3 = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-03+0118.wav";
 
 // Video URLs - replace these with your actual video URLs
 const desktopVideoUrl = "https://portfoliomusic.s3.us-east-1.amazonaws.com/inthemomentbgdesktop.mov"; // Add your desktop video URL here
