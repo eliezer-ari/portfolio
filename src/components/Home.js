@@ -76,7 +76,7 @@ const Home = () => {
 	return (
 		<div className="standard-container">
 			<div className="home-logo-container">
-				<ArianaLogo className="home-logo-svg" />
+				<ArianaLogo className="home-logo-svg" style={ isMobile ? { display: "none" } : { display: "block" } } />
 				{/* <div className="subtitle-container">
 					<span className="subtitle">Musician | Lighting Technician</span>
 				</div> */}
