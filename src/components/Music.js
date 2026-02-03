@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import "./styles/Standard.css";
 import AudioPlayer from "./AudioPlayer";
 import Contact from "./Contact";
+import DesktopFallbackImage from "./images/desktopfallback1.png";
+import MobileFallbackImage from "./images/mobilefallback1.png";
 
 const InTheMomentFLAC = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-03+0118.flac";
 const InTheMomentMP3 = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-03+0118.wav";
@@ -11,8 +13,8 @@ const desktopVideoUrl = "https://portfoliomusic.s3.us-east-1.amazonaws.com/inthe
 const mobileVideoUrl = "https://portfoliomusic.s3.us-east-1.amazonaws.com/inthemomentbgmobile.mov"; // Add your mobile video URL here
 
 // Fallback image URLs - replace these with your actual fallback image URLs
-const desktopFallbackImage = ""; // Add your desktop fallback image URL here
-const mobileFallbackImage = ""; // Add your mobile fallback image URL here
+const desktopFallbackImage = DesktopFallbackImage; // Add your desktop fallback image URL here
+const mobileFallbackImage = MobileFallbackImage; // Add your mobile fallback image URL here
 
 const Music = ({ setNextSection, activeSection }) => {
 	const desktopVideoRef = useRef(null);
