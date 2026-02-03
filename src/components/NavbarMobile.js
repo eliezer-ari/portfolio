@@ -36,14 +36,14 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 							Original Music
 						</button>
 					</li>
-					<li className="navitem">
+					{/* <li className="navitem">
 						<button
 							className="navlinks"
 							onClick={() => handleLinkClick("DJMixes")}
 						>
 							DJ Mixes
 						</button>
-					</li>
+					</li> */}
 					<li className="navitem">
 						<button
 							className="navlinks"
