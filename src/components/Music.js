@@ -128,7 +128,7 @@ const Music = ({ setNextSection, activeSection }) => {
 						src={InTheMomentFLAC}
 						fallbackSrc={InTheMomentMP3}
 						title="In The Moment"
-						artist="ARIANA ROSEMAN"
+						artist="Ariana Roseman"
 					/>
 				</div>
 			</div>
