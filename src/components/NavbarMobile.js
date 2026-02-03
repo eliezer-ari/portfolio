@@ -11,7 +11,6 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 
 	return (
 		<nav className="navbar-lower">
-			<div className="onerem-bar"></div>
 
 			<div className="navbarmobilecontainer">
 				{/* <div className="logospacer">
@@ -20,7 +19,8 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 					</div>
 				</div> */}
 				<ul className="navmenu">
-				<li className="navitem">
+				{activeSection !== "Home" && (
+					<li className="navitem">
 						<button
 							className="navlinks"
 							onClick={() => handleLinkClick("Home")}
@@ -28,6 +28,7 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 							Home
 						</button>
 					</li>
+				)}
 				<li className="navitem">
 						<button
 							className="navlinks"
