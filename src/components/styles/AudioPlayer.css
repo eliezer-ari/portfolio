@@ -8,12 +8,11 @@
 	gap: 10px;
 	width: 100%;
 	height: 100%;
-	transform: translateY(calc(-50px));
 	background-color: rgba(255, 255, 255, 0.05) !important;
 		box-shadow: none !important;
 		/* padding: 1rem !important; */
 		/* border-radius: 12px !important; */
-		border: 1px solid rgba(255, 255, 255, 0.1) !important;
+		/* border: 1px solid rgba(255, 255, 255, 0.1) !important; */
 		backdrop-filter: blur(10px);
 	/* padding: 10px; */
 }
@@ -35,7 +34,6 @@
 		z-index: 1000;
 		
 		gap: 12px;
-		transform: translateY(calc(-50px));
 	}
 
 	.audioplayercontainer .album-art {
@@ -124,7 +122,7 @@ display: none;
 }
 /* Custom audio player container */
 .rhap_container {
-	background-color: transparent !important;
+	background-color: #0000005e !important;
 	box-shadow: none !important;
 	padding: 0 5px !important;
 	/* border-radius: 12px !important; */
@@ -141,6 +139,11 @@ display: none;
 /* Progress bar container */
 .rhap_progress-section {
 	margin: 10px 0px 5px 0 !important;
+	display: flex !important;
+	align-items: center !important;
+	gap: 0 !important;
+	width: 100% !important;
+	min-width: 0 !important;
 }
 
 .rhap_progress-container {
@@ -151,6 +154,8 @@ display: none;
 	overflow: hidden !important; /* Clip any overflow */
 	position: relative !important;
 	margin: 0 calc(1%) !important;
+	flex: 1 1 auto !important;
+	min-width: 0 !important;
 }
 
 .rhap_progress-bar {

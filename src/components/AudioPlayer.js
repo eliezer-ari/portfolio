@@ -1,5 +1,5 @@
 // AudioPlayer.js
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import "./styles/AudioPlayer.css";
@@ -13,14 +13,101 @@ const formatTime = (seconds) => {
 	return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 };
 
+// Browser detection utilities
+const isSafari = () => {
+	return /^((?!chrome|android).)*safari/i.test(navigator.userAgent) ||
+		/iPad|iPhone|iPod/.test(navigator.userAgent);
+};
+
+const isIOS = () => {
+	return /iPad|iPhone|iPod/.test(navigator.userAgent);
+};
+
+// Check if browser supports FLAC format
+const supportsFLAC = () => {
+	// Safari and iOS don't support FLAC
+	if (isSafari() || isIOS()) {
+		return false;
+	}
+	
+	// Check if audio element can play FLAC
+	const audio = document.createElement('audio');
+	const canPlay = audio.canPlayType('audio/flac') || audio.canPlayType('audio/x-flac');
+	return canPlay === 'probably' || canPlay === 'maybe';
+};
+
+// Check if browser supports a specific audio format
+const supportsFormat = (url) => {
+	if (typeof url !== 'string') return true; // Assume imported modules are supported
+	
+	const audio = document.createElement('audio');
+	const urlLower = url.toLowerCase();
+	
+	if (urlLower.endsWith('.mp3')) {
+		return audio.canPlayType('audio/mpeg') !== '';
+	} else if (urlLower.endsWith('.wav')) {
+		return audio.canPlayType('audio/wav') !== '' || audio.canPlayType('audio/wave') !== '';
+	} else if (urlLower.endsWith('.flac')) {
+		return supportsFLAC();
+	} else if (urlLower.endsWith('.ogg')) {
+		return audio.canPlayType('audio/ogg') !== '';
+	} else if (urlLower.endsWith('.m4a') || urlLower.endsWith('.mp4')) {
+		return audio.canPlayType('audio/mp4') !== '';
+	}
+	
+	// Unknown format, assume it might work
+	return true;
+};
+
+// Get the best audio source based on browser support
+const getBestAudioSource = (src, fallbackSrc = null) => {
+	// If src is already a string URL, check if it's FLAC
+	if (typeof src === 'string') {
+		const isFLAC = src.toLowerCase().endsWith('.flac');
+		
+		// If it's FLAC and browser doesn't support it, use fallback
+		if (isFLAC && !supportsFLAC()) {
+			// If fallback is provided, use it
+			if (fallbackSrc) {
+				return fallbackSrc;
+			}
+			// Otherwise, return the FLAC source anyway (let browser handle it)
+			return src;
+		}
+		return src;
+	}
+	
+	// If src is not a string (e.g., imported module), check browser support
+	if (!supportsFLAC() && fallbackSrc) {
+		return fallbackSrc;
+	}
+	
+	return src;
+};
+
 const PlaylistPlayer = ({ 
 	src, 
+	fallbackSrc = null, // Fallback audio source (e.g., MP3 version)
 	title = "Unknown", 
 	artist = "ARIANA ROSEMAN", 
 	albumArt = defaultAlbumArt,
 	duration = 0 // Duration in seconds
 }) => {
 	const playerRef = useRef(null);
+	const [currentSrc, setCurrentSrc] = useState(() => getBestAudioSource(src, fallbackSrc));
+	const [attemptedSources, setAttemptedSources] = useState(new Set());
+	const audioRef = useRef(null);
+	const [currentTime, setCurrentTime] = useState(0);
+	const [audioDuration, setAudioDuration] = useState(duration || 0);
+
+	// Handle audio source changes
+	useEffect(() => {
+		const newSrc = getBestAudioSource(src, fallbackSrc);
+		setCurrentSrc(newSrc);
+		setAttemptedSources(new Set([newSrc]));
+		setCurrentTime(0);
+		setAudioDuration(duration || 0);
+	}, [src, fallbackSrc, duration]);
 
 	// Set up MediaSession API for better iOS lock screen support
 	useEffect(() => {
@@ -47,6 +134,94 @@ const PlaylistPlayer = ({
 		}
 	}, [title, artist, albumArt]);
 
+	// Test if a URL is accessible (for debugging)
+	const testUrlAccessibility = useCallback(async (url) => {
+		try {
+			const response = await fetch(url, { method: 'HEAD', mode: 'cors' });
+			console.log(`URL accessibility test for ${url}:`, {
+				status: response.status,
+				statusText: response.statusText,
+				contentType: response.headers.get('content-type'),
+				contentLength: response.headers.get('content-length'),
+				accessControlAllowOrigin: response.headers.get('access-control-allow-origin'),
+				corsEnabled: response.headers.get('access-control-allow-origin') !== null
+			});
+			return response.ok;
+		} catch (err) {
+			console.error(`URL accessibility test failed for ${url}:`, err);
+			return false;
+		}
+	}, []);
+
+	// Handle audio errors with fallback
+	const handleError = useCallback((e) => {
+		const audioElement = e.target;
+		const error = audioElement?.error;
+		const actualSrc = audioElement?.src || currentSrc;
+		
+		if (error) {
+			let errorMessage = "Unknown error";
+			switch (error.code) {
+				case error.MEDIA_ERR_ABORTED:
+					errorMessage = "Media playback was aborted";
+					break;
+				case error.MEDIA_ERR_NETWORK:
+					errorMessage = "Network error while loading media";
+					break;
+				case error.MEDIA_ERR_DECODE:
+					errorMessage = "Media decoding error (format may not be supported)";
+					break;
+				case error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+					errorMessage = "Media source not supported (format/codec issue)";
+					break;
+				default:
+					errorMessage = `Error code: ${error.code}`;
+			}
+			
+			console.error("Audio playback error:", errorMessage, {
+				code: error.code,
+				message: error.message,
+				actualSrc: actualSrc,
+				currentSrc: currentSrc,
+				networkState: audioElement?.networkState,
+				readyState: audioElement?.readyState
+			});
+
+			// Test URL accessibility for debugging
+			if (typeof actualSrc === 'string' && actualSrc.startsWith('http')) {
+				testUrlAccessibility(actualSrc);
+			}
+
+			// Try explicit fallback if available and we haven't already tried it
+			if (!attemptedSources.has(fallbackSrc) && fallbackSrc && currentSrc !== fallbackSrc) {
+				console.log("Attempting fallback audio source:", fallbackSrc);
+				setCurrentSrc(fallbackSrc);
+				setAttemptedSources(prev => new Set([...prev, fallbackSrc]));
+			} else if (error.code === error.MEDIA_ERR_SRC_NOT_SUPPORTED || error.code === error.MEDIA_ERR_DECODE) {
+				// Format/codec error - provide detailed diagnostics
+				const diagnostics = {
+					issue: "Format/codec error - possible causes:",
+					possibleCauses: [
+						"CORS not properly configured (check S3 bucket CORS settings)",
+						"Incorrect Content-Type header on S3 file (should be audio/flac for FLAC, audio/wav for WAV)",
+						"File encoding not supported by browser",
+						"File corrupted or incomplete upload"
+					],
+					checklist: [
+						"Verify CORS is configured in S3 bucket",
+						"Check file metadata in S3 - Content-Type should match file format",
+						"Test file URL directly in browser",
+						"Check browser console for CORS errors"
+					],
+					src: actualSrc
+				};
+				console.warn("Audio format error diagnostics:", diagnostics);
+			}
+		} else {
+			console.error("Audio playback error:", e);
+		}
+	}, [currentSrc, fallbackSrc, attemptedSources, testUrlAccessibility]);
+
 	return (
 		<div className="audioplayercontainer">
 		
@@ -65,12 +240,38 @@ const PlaylistPlayer = ({
 				{/* Audio Player */}
 				<div style={{ width: "100%" }} ref={playerRef}>
 					<AudioPlayer
-						src={src}
-						onPlay={(e) => console.log("onPlay")}
-						onPause={(e) => console.log("onPause")}
-						onError={(e) => {
-							console.error("Audio playback error:", e);
+						src={currentSrc}
+						onPlay={(e) => {
+							console.log("onPlay");
+							audioRef.current = e.target;
 						}}
+						onPause={(e) => {
+							console.log("onPause");
+							audioRef.current = e.target;
+						}}
+						onListen={(e) => {
+							const audio = e.target;
+							if (audio && audio.currentTime !== undefined) {
+								setCurrentTime(audio.currentTime);
+							}
+							if (audio && audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
+								setAudioDuration(audio.duration);
+							}
+						}}
+						onLoadedData={(e) => {
+							const audio = e.target;
+							if (audio && audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
+								setAudioDuration(audio.duration);
+							}
+						}}
+						onCanPlay={(e) => {
+							const audio = e.target;
+							if (audio && audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
+								setAudioDuration(audio.duration);
+							}
+						}}
+						onError={handleError}
+						listenInterval={100}
 						showJumpControls={false}
 						layout="stacked-reverse"
 						showFilledProgress={true}
@@ -78,16 +279,43 @@ const PlaylistPlayer = ({
 						customProgressBarSection={[
 							"PROGRESS_BAR",
 							<div
+								key="current-time"
+								className="rhap_time"
+								style={{
+									color: "rgba(255, 255, 255, 0.8)",
+									fontFamily: "Sen, sans-serif",
+									fontSize: "0.9rem",
+									marginLeft: "0.5rem",
+									flexShrink: 0,
+								}}
+							>
+								{formatTime(currentTime)}
+							</div>,
+							<div
+								key="time-separator"
+								className="rhap_time"
+								style={{
+									color: "rgba(255, 255, 255, 0.8)",
+									fontFamily: "Sen, sans-serif",
+									fontSize: "0.9rem",
+									margin: "0 0.5rem",
+									flexShrink: 0,
+								}}
+							>
+								|
+							</div>,
+							<div
 								key="total-time"
 								className="rhap_time"
 								style={{
 									color: "rgba(255, 255, 255, 0.8)",
 									fontFamily: "Sen, sans-serif",
 									fontSize: "0.9rem",
-									marginLeft: "0.2rem"
+									marginRight: "0.2rem",
+									flexShrink: 0,
 								}}
 							>
-								{formatTime(duration)}
+								{formatTime(audioDuration)}
 							</div>
 						]}
 						customControlsSection={[

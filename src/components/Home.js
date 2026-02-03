@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./styles/Standard.css";
 import "./styles/Navbar.css";
-import MainBG from "./images/mainbg.jpeg";
-import MainBGMobile from "./images/mainbgmobile.jpeg";
+import MainBG from "./images/portfoliohomebg.png";
+import MainBGMobile from "./images/portfoliohomebgmobile.png";
 
 // Helper function to check if a file is an image
 const isImageFile = (url) => {
@@ -86,7 +86,6 @@ const Home = () => {
 					alt="Background"
 					className={isMobile ? "video-background-mobile" : "video-background"}
 					style={{
-						display: "none",
 						width: "100%",
 						height: "100%",
 						objectFit: "cover"
