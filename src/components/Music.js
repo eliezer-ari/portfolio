@@ -5,8 +5,8 @@ import Contact from "./Contact";
 import DesktopFallbackImage from "./images/desktopfallback1.png";
 import MobileFallbackImage from "./images/mobilefallback1.png";
 
-const InTheMomentFLAC = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-03+0301.flac";
-const InTheMomentMP3 = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-03+0301.wav";
+const InTheMomentFLAC = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-03+1725.flac";
+const InTheMomentMP3 = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-03+1725.wav";
 
 // Video URLs - replace these with your actual video URLs
 const desktopVideoUrl = "https://portfoliomusic.s3.us-east-1.amazonaws.com/inthemomentbgdesktop.mov"; // Add your desktop video URL here
@@ -127,7 +127,7 @@ const Music = ({ setNextSection, activeSection }) => {
 					<AudioPlayer 
 						src={InTheMomentFLAC}
 						fallbackSrc={InTheMomentMP3}
-						title="In The Moment"
+						title="In This Moment"
 						artist="Ariana Roseman"
 					/>
 				</div>
