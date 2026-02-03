@@ -127,17 +127,22 @@
 	color: #ffffff;
 	letter-spacing: 0.1rem;
 	text-transform: uppercase;
-	font-family: "BeauBold", sans-serif;
 	font-weight: normal;
 	font-size: 1.75rem;
 	padding-left: 1rem;
 	padding-right: 1rem;
-	padding-top: 4px;
 	border: none;
 	background-color: transparent;
 	justify-content: center;
 	align-items: center;
 	z-index: 1399;
+}
+
+.navbar-logo-svg {
+	height: 1.2rem;
+	width: auto;
+	fill: #ffffff;
+	transition: opacity 0.3s ease;
 }
 
 /* Mobile-specific styles */

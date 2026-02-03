@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./styles/Navbar.css";
+import { ReactComponent as ArianaLogo } from "./images/ariana-roseman-logo.svg";
 
 const Navbar = ({ setActiveSection }) => {
 	const [activeLink, setActiveLink] = useState(null);
@@ -19,7 +20,7 @@ const Navbar = ({ setActiveSection }) => {
 						}`}
 						onClick={() => handleLinkClick("Home")}
 					>
-						ARIANA ROSEMAN
+						<ArianaLogo className="navbar-logo-svg" />
 					</button>
 				</div>
 			</div>

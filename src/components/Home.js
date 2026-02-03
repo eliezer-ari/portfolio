@@ -3,6 +3,7 @@ import "./styles/Standard.css";
 import "./styles/Navbar.css";
 import MainBG from "./images/portfoliohomebg.png";
 import MainBGMobile from "./images/portfoliohomebgmobile.png";
+import { ReactComponent as ArianaLogo } from "./images/ariana-roseman-logo.svg";
 
 // Helper function to check if a file is an image
 const isImageFile = (url) => {
@@ -75,9 +76,9 @@ const Home = () => {
 	return (
 		<div className="standard-container">
 			<div className="home-logo-container">
-				<div className="home-logo-text">ARIANA ROSEMAN</div>
+				<ArianaLogo className="home-logo-svg" />
 				{/* <div className="subtitle-container">
-					<span className="subtitle">Multimedia Creative Services</span>
+					<span className="subtitle">Musician | Lighting Technician</span>
 				</div> */}
 			</div>
 			{currentIsImage ? (
