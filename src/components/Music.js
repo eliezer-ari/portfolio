@@ -5,8 +5,8 @@ import Contact from "./Contact";
 import DesktopFallbackImage from "./images/desktopfallback1.png";
 import MobileFallbackImage from "./images/mobilefallback1.png";
 
-const InTheMomentFLAC = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-04+2201.flac";
-const InTheMomentMP3 = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-04+2201.wav";
+const InTheMomentFLAC = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-04+2229.flac";
+const InTheMomentMP3 = "https://portfoliomusic.s3.us-east-1.amazonaws.com/in+the+moment+2026-02-04+2229.wav";
 
 // Video URLs - replace these with your actual video URLs
 const desktopVideoUrl = "https://portfoliomusic.s3.us-east-1.amazonaws.com/inthemomentbgdesktop.mov"; // Add your desktop video URL here
