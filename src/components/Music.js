@@ -128,6 +128,7 @@ const Music = ({ setNextSection, activeSection }) => {
 						src={InTheMomentFLAC}
 						fallbackSrc={InTheMomentMP3}
 						title="In This Moment"
+						titleBadge="LOSSLESS"
 						artist="Ariana Roseman"
 					/>
 				</div>

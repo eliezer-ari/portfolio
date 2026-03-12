@@ -89,6 +89,7 @@ const PlaylistPlayer = ({
 	src, 
 	fallbackSrc = null, // Fallback audio source (e.g., MP3 version)
 	title = "Unknown", 
+	titleBadge = null, // Optional small label next to title (e.g. "LOSSLESS AUDIO")
 	artist = "ARIANA ROSEMAN", 
 	albumArt = defaultAlbumArt,
 	duration = 0 // Duration in seconds
@@ -336,6 +337,9 @@ const PlaylistPlayer = ({
 								<div
 									className="track-title"
 									style={{
+										display: "flex",
+										alignItems: "center",
+										gap: "0.5rem",
 										fontSize: "1rem",
 										fontWeight: "600",
 										letterSpacing: "0.05rem",
@@ -346,7 +350,25 @@ const PlaylistPlayer = ({
 										lineHeight: "1.3",
 									}}
 								>
-									{title}
+									<span style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis" }}>{title}</span>
+									{titleBadge && currentSrc === src && (
+										<span
+											style={{
+												fontSize: "0.4rem",
+												fontWeight: "500",
+												letterSpacing: "0.1em",
+												opacity: 0.85,
+												flexShrink: 0,
+												textTransform: "uppercase",
+												backgroundColor: "rgba(255, 255, 255, 0.45)",
+												borderRadius: "2px",
+												padding: "2px 4px",
+												transform: "translateY(0.5px)",
+											}}
+										>
+											{titleBadge}
+										</span>
+									)}
 								</div>
 								<div
 									className="track-artist"
