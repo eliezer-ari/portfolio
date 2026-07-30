@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import "./styles/Hero.css";
 import Navbar from "./Navbar.js";
 import NavbarMobile from "./NavbarMobile.js";
@@ -11,6 +11,10 @@ import DJMixes from "./DJMixes.js";
 import Graphics from "./Graphics.js";
 // import Cinematography from "./Cinematography.js";
 import Home from "./Home.js";
+
+// Hash-only sections: not in nav, not restored from sessionStorage
+const SECRET_SECTIONS = new Set(["Unreleased"]);
+const Unreleased = lazy(() => import("./Unreleased.js"));
 
 export default function Hero() {
 	const [activeSection, setActiveSection] = useState("Home");
@@ -63,10 +67,14 @@ export default function Hero() {
 				console.log("Setting transition state to false...");
 				setIsTransitioning(false);
 
-				// Save the new section in sessionStorage
+				// Persist hash; only remember public sections in sessionStorage
 				console.log(`Saving active section '${section}' to sessionStorage.`);
 				window.location.hash = section;
-				sessionStorage.setItem("lastActiveSection", section);
+				if (SECRET_SECTIONS.has(section)) {
+					sessionStorage.removeItem("lastActiveSection");
+				} else {
+					sessionStorage.setItem("lastActiveSection", section);
+				}
 
 				// Remove the event listener
 				sectionContainer.removeEventListener("transitionend", onTransitionEnd);
@@ -110,12 +118,16 @@ export default function Hero() {
 		}
 	}, [activeSection]);
 
-	// Set initial section based on sessionStorage or hash in URL
+	// Set initial section from hash (incl. secret pages) or public sessionStorage
 	useEffect(() => {
+		const hashSection = window.location.hash.replace("#", "");
 		const savedSection = sessionStorage.getItem("lastActiveSection");
 		const initialSection =
-			window.location.hash.replace("#", "") || savedSection || "Home";
+			hashSection ||
+			(savedSection && !SECRET_SECTIONS.has(savedSection) ? savedSection : null) ||
+			"Home";
 		setActiveSection(initialSection);
+		setVisibleSection(initialSection);
 	}, []);
 
 	// Set the actual viewport height on mobile devices
@@ -143,8 +155,14 @@ export default function Hero() {
 			// 	return <WebDesign setNextSection={setNextSection} />;
 			case "Music":
 				return <Music setNextSection={setNextSection} activeSection={activeSection} />;
-				case "DJMixes":
+			case "DJMixes":
 				return <DJMixes setNextSection={setNextSection} activeSection={activeSection} />;
+			case "Unreleased":
+				return (
+					<Suspense fallback={null}>
+						<Unreleased setNextSection={setNextSection} activeSection={activeSection} />
+					</Suspense>
+				);
 			default:
 				return <Home />;
 		}
