@@ -29,14 +29,14 @@ const NavbarMobile = ({ setActiveSection, activeSection }) => {
 						</button>
 					</li>
 				)}
-				<li className="navitem">
+				{/* <li className="navitem">
 						<button
 							className="navlinks"
 							onClick={() => handleLinkClick("Music")}
 						>
 							Original Music
 						</button>
-					</li>
+					</li> */}
 					<li className="navitem">
 						<button
 							className="navlinks"

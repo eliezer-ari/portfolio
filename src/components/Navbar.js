@@ -26,14 +26,14 @@ const Navbar = ({ setActiveSection }) => {
 			</div>
 			<div className="navbarcontainer">
 				<ul className="navmenu">
-				<li className="navitem">
+				{/* <li className="navitem">
 						<button
 							className={`navlinks ${activeLink === "Music" ? "active" : ""}`}
 							onClick={() => handleLinkClick("Music")}
 						>
 							Original Music
 						</button>
-					</li>
+					</li> */}
 					<li className="navitem">
 						<button
 							className={`navlinks ${activeLink === "DJMixes" ? "active" : ""}`}
