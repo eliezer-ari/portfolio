@@ -4,8 +4,8 @@ import AudioPlayer from "./AudioPlayer";
 import CadmiumRedFLAC from "./images/cadmium red 2026-01-22 0851.flac";
 
 // Swap these for S3 URLs once uploaded (same pattern as Music.js).
-const CadmiumRedSrc = "https://portfoliomusic.s3.us-east-1.amazonaws.com/devotional+track+(rough+mix).flac";
-const CadmiumRedFallback = "https://portfoliomusic.s3.us-east-1.amazonaws.com/devotional+track+(rough+mix).wav"; // Add a WAV/MP3 for Safari/iOS when available
+const DevotionalTrackSrc = "https://portfoliomusic.s3.us-east-1.amazonaws.com/devotional+track+(rough+mix).flac";
+const DevotionalTrackFallback = "https://portfoliomusic.s3.us-east-1.amazonaws.com/devotional+track+(rough+mix).wav"; // Add a WAV/MP3 for Safari/iOS when available
 
 const Unreleased = () => {
 	return (
@@ -15,8 +15,8 @@ const Unreleased = () => {
 		>
 			<div className="player">
 				<AudioPlayer
-					src={CadmiumRedSrc}
-					fallbackSrc={CadmiumRedFallback}
+					src={DevotionalTrackSrc}
+					fallbackSrc={DevotionalTrackFallback}
 					title="Devotional Track (Rough Mix)"
 					titleBadge="LOSSLESS"
 					artist="Ariana Roseman"
