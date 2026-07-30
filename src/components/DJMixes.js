@@ -285,7 +285,7 @@ const DJMixes = ({ setNextSection, activeSection }) => {
 						<AudioPlayer
 							src={janebdayFLAC}
 							fallbackSrc={janebdayMP3}
-							title="Jane's Birthday Orgy Mix"
+							title="Jane's Birthday Play Party"
 							titleBadge="LOSSLESS"
 							artist="Ariana Roseman"
 						/>

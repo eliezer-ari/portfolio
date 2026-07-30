@@ -21,14 +21,14 @@ const NavbarMobileHome = ({ setActiveSection, activeSection }) => {
 				</div> */}
 				<ul className="navmenu">
 
-				<li className="navitem">
+				{/* <li className="navitem">
 						<button
 							className="navlinks"
 							onClick={() => handleLinkClick("Music")}
 						>
 							Original Music
 						</button>
-					</li>
+					</li> */}
 					<li className="navitem">
 						<button
 							className="navlinks"
