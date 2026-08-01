@@ -59,6 +59,25 @@ const supportsFormat = (url) => {
 	return true;
 };
 
+// Pause sibling players when one starts so only one track plays at a time
+const registeredAudios = new Set();
+
+const registerAudio = (audio) => {
+	if (audio) registeredAudios.add(audio);
+};
+
+const unregisterAudio = (audio) => {
+	if (audio) registeredAudios.delete(audio);
+};
+
+const pauseOtherAudios = (audio) => {
+	registeredAudios.forEach((other) => {
+		if (other !== audio && !other.paused) {
+			other.pause();
+		}
+	});
+};
+
 // Get the best audio source based on browser support
 const getBestAudioSource = (src, fallbackSrc = null) => {
 	// If src is already a string URL, check if it's FLAC
@@ -109,6 +128,18 @@ const PlaylistPlayer = ({
 		setCurrentTime(0);
 		setAudioDuration(duration || 0);
 	}, [src, fallbackSrc, duration]);
+
+	// Register this player's <audio> for exclusive playback across instances
+	useEffect(() => {
+		const audio = playerRef.current?.querySelector("audio");
+		if (audio) {
+			registerAudio(audio);
+			audioRef.current = audio;
+		}
+		return () => {
+			unregisterAudio(audioRef.current);
+		};
+	}, [currentSrc]);
 
 	// Set up MediaSession API for better iOS lock screen support
 	useEffect(() => {
@@ -243,11 +274,12 @@ const PlaylistPlayer = ({
 					<AudioPlayer
 						src={currentSrc}
 						onPlay={(e) => {
-							console.log("onPlay");
-							audioRef.current = e.target;
+							const audio = e.target;
+							audioRef.current = audio;
+							registerAudio(audio);
+							pauseOtherAudios(audio);
 						}}
 						onPause={(e) => {
-							console.log("onPause");
 							audioRef.current = e.target;
 						}}
 						onListen={(e) => {
