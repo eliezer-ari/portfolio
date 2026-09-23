@@ -28,7 +28,7 @@ const TRACKS = [
 	},
 	{
 		id: "bacchanal",
-		src: "https://portfoliomusic.s3.us-east-1.amazonaws.com/bacchanal.flac",
+		src: "https://portfoliomusic.s3.us-east-1.amazonaws.com/bacchanal.wav",
 		fallbackSrc: "https://portfoliomusic.s3.us-east-1.amazonaws.com/bacchanal.wav",
 		title: "Bacchanal",
 		titleBadge: "New!",
@@ -36,7 +36,7 @@ const TRACKS = [
 	},
 	{
 		id: "Dioxazine",
-		src: "https://portfoliomusic.s3.us-east-1.amazonaws.com/dioxazine.flac",
+		src: "https://portfoliomusic.s3.us-east-1.amazonaws.com/dioxazine.wav",
 		fallbackSrc: "https://portfoliomusic.s3.us-east-1.amazonaws.com/dioxazine.wav",
 		title: "Dioxazine (WIP)",
 		titleBadge: "New!",
