@@ -9,7 +9,7 @@ const TRACKS = [
 		src: "https://portfoliomusic.s3.us-east-1.amazonaws.com/devotional+track+(rough+mix).flac",
 		fallbackSrc: "https://portfoliomusic.s3.us-east-1.amazonaws.com/devotional+track+(rough+mix).wav",
 		title: "Devotional Track (Light Mix)",
-		titleBadge: "LOSSLESS",
+		// titleBadge: "LOSSLESS",
 		artist: "Ariana Roseman",
 	},
 	{
@@ -38,7 +38,7 @@ const TRACKS = [
 		id: "Dioxazine",
 		src: "https://portfoliomusic.s3.us-east-1.amazonaws.com/dioxazine.flac",
 		fallbackSrc: "https://portfoliomusic.s3.us-east-1.amazonaws.com/dioxazine.wav",
-		title: "Dioxazine",
+		title: "Dioxazine (WIP)",
 		titleBadge: "New!",
 		artist: "Ariana Roseman",
 	},
