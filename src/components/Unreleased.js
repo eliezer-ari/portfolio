@@ -38,7 +38,7 @@ const TRACKS = [
 		id: "Dioxazine",
 		src: "https://portfoliomusic.s3.us-east-1.amazonaws.com/Dioxazine.wav",
 		fallbackSrc: "https://portfoliomusic.s3.us-east-1.amazonaws.com/Dioxazine.wav",
-		title: "Dioxazine (WIP)",
+		title: "Dioxazine",
 		titleBadge: "New!",
 		artist: "Ariana Roseman",
 	},
