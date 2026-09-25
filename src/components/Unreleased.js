@@ -23,7 +23,7 @@ const TRACKS = [
 		id: "moondance",
 		src: "https://portfoliomusic.s3.us-east-1.amazonaws.com/moon+dance.flac",
 		fallbackSrc: "https://portfoliomusic.s3.us-east-1.amazonaws.com/moon+dance.wav",
-		title: "Moon Dance (WIP Down Boots)",
+		title: "Moon Dance",
 		artist: "Ariana Roseman",
 	},
 	{
@@ -38,7 +38,7 @@ const TRACKS = [
 		id: "Dioxazine",
 		src: "https://portfoliomusic.s3.us-east-1.amazonaws.com/Dioxazine.wav",
 		fallbackSrc: "https://portfoliomusic.s3.us-east-1.amazonaws.com/Dioxazine.wav",
-		title: "Dioxazine",
+		title: "Dioxazine (working title)",
 		titleBadge: "New!",
 		artist: "Ariana Roseman",
 	},
