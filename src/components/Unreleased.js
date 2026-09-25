@@ -36,9 +36,9 @@ const TRACKS = [
 	},
 	{
 		id: "Dioxazine",
-		src: "https://portfoliomusic.s3.us-east-1.amazonaws.com/Dioxazine.wav",
-		fallbackSrc: "https://portfoliomusic.s3.us-east-1.amazonaws.com/Dioxazine.wav",
-		title: "Dioxazine (working title)",
+		src: "https://portfoliomusic.s3.us-east-1.amazonaws.com/Carnal+Knowledge.wav",
+		fallbackSrc: "https://portfoliomusic.s3.us-east-1.amazonaws.com/Carnal+Knowledge.wav",
+		title: "Carnal Knowledge (Dioxazine)",
 		titleBadge: "New!",
 		artist: "Ariana Roseman",
 	},
